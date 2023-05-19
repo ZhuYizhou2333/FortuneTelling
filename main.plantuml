@@ -1,0 +1,540 @@
+@startuml A
+
+class sizhu
+{
+    +_NianGan
+    +_YueGan
+    +_RiGan
+    +_ShiGan
+    +_NianZhi
+    +_YueZhi
+    +_RiZhi
+    +_ShiZhi
+    +LYear
+    +LMonth
+    +LDay
+    +sizhu(unsigned long long, double)
+    -_BirthTime
+    -_Year
+    -_Month
+    -_Day
+    -_Hour
+    -_Minute
+    -RYear
+    -RMonth
+    -RDay
+    -RHour
+    -RMinute
+}
+
+class StarBase
+{
+    +StarBase()
+    +Palace
+    +Name
+}
+
+class BodyPalace
+{
+    +BodyPalace()
+}
+class LifePalace
+{
+    +LifePalace()
+}
+class BrotherPalace
+{
+    +BrotherPalace()
+}
+class CouplePalace
+{
+    +CouplePalace()
+}
+class ChildrenPalace
+{
+    +ChildrenPalace()
+}
+class MoneyPalace
+{
+    +MoneyPalace()
+}
+class DiseasePalace
+{
+    +DiseasePalace()
+}
+class MigrationPalace
+{
+    +MigrationPalace()
+}
+class SlavePalace
+{
+    +SlavePalace()
+}
+class FunctionaryPalace
+{
+    +FunctionaryPalace()
+}
+class FarmlandPalace
+{
+    +FarmlandPalace()
+}
+
+class FortunePalace
+{
+    +FortunePalace()
+}
+class ParentPalace
+{
+    +ParentPalace()
+}
+class WuXingJuXing
+{
+    +WuXingJuXing()
+}
+
+class ZiWei
+{
+    +ZiWei()
+}
+class TianJi
+{
+    +TianJi()
+}
+class TaiYang
+{
+    +TaiYang()
+}
+class WuQu
+{
+    +WuQu()
+}
+class TianTong
+{
+    +TianTong()
+}
+class LianZhen
+{
+    +LianZhen()
+}
+class TianFu
+{
+    +TianFu()
+}
+class TaiYin
+{
+    +TaiYin()
+}
+class TanLang
+{
+    +TanLang()
+}
+class JuMen
+{
+    +JuMen()
+}
+class TianXiang
+{
+    +TianXiang()
+}
+class TianLiang
+{
+    +TianLiang()
+}
+class QiSha
+{
+    +QiSha()
+}
+class PoJun
+{
+    +PoJun()
+}
+class WenChang
+{
+    +WenChang()
+}
+class WenQu
+{
+    +WenQu()
+}
+class HuoXing
+{
+    +HuoXing()
+}
+class LingXing
+{
+    +LingXing()
+}
+class DiJie
+{
+    +DiJie()
+}
+class TianKong
+{
+    +TianKong()
+}
+class TaiFu
+{
+    +TaiFu()
+}
+class FengGao
+{
+    +FengGao()
+}
+class ZuoFu
+{
+    +ZuoFu()
+}
+class YouBi
+{
+    +YouBi()
+}
+class TianXing
+{
+    +TianXing()
+}
+class TianYao
+{
+    +TianYao()
+}
+class TianMa
+{
+    +TianMa()
+}
+class JieShen
+{
+    +JieShen()
+}
+class TianWu
+{
+    +TianWu()
+}
+class TianYue_2
+{
+    +TianYue_2()
+}
+class YinSha
+{
+    +YinSha()
+}
+class SanTai
+{
+    +SanTai()
+}
+class BaZuo
+{
+    +BaZuo()
+}
+class EnGuang
+{
+    +EnGuang()
+}
+class TianGui
+{
+    +TianGui()
+}
+class LuCun_
+{
+    +LuCun_()
+}
+class QingYang
+{
+    +QingYang()
+}
+class TuoLuo
+{
+    +TuoLuo()
+}
+class TianKui
+{
+    +TianKui()
+}
+class TianYue
+{
+    +TianYue()
+}
+class TianGuan
+{
+    +TianGuan()
+}
+class TianFu_2
+{
+    +TianFu_2()
+}
+class HuaLu
+{
+    +HuaLu()
+}
+class HuaQuan
+{
+    +HuaQuan()
+}
+class HuaKe
+{
+    +HuaKe()
+}
+class HuaJi
+{
+    +HuaJi()
+}
+class BoShi
+{
+    +BoShi()
+}
+class LiShi
+{
+    +LiShi()
+}
+class QingLong
+{
+    +QingLong()
+}
+class XiaoHao
+{
+    +XiaoHao()
+}
+class JiangJun
+{
+    +JiangJun()
+}
+class ZouShu
+{
+    +ZouShu()
+}
+class FeiLian
+{
+    +FeiLian()
+}
+class XiShen
+{
+    +XiShen()
+}
+class BingFu
+{
+    +BingFu()
+}
+class DaHao
+{
+    +DaHao()
+}
+class FuBing
+{
+    +FuBing()
+}
+class GuanFu
+{
+    +GuanFu()
+}
+class DiKong
+{
+    +DiKong()
+}
+class TianKu
+{
+    +TianKu()
+}
+class TianXu
+{
+    +TianXu()
+}
+class TianXu
+{
+    +TianXu()
+}
+class LongChi
+{
+    +LongChi()
+}
+class FengGe
+{
+    +FengGe()
+}
+class HongLuan
+{
+    +HongLuan()
+}
+class TianXi
+{
+    +TianXi()
+}
+class FeiLian_2
+{
+    +FeiLian_2()
+}
+class PoSui
+{
+    +PoSui()
+}
+class GuChen
+{
+    +GuChen()
+}
+class GuaSu
+{
+    +GuaSu()
+}
+class TianCai
+{
+    +TianCai()
+}
+class TianShou
+{
+    +TianShou()
+}
+class ChangSheng
+{
+    +ChangSheng()
+}
+class MuYu
+{
+    +MuYu()
+}
+Class GuanDai
+{
+    +GuanDai()
+}
+class LinGuan
+{
+    +LinGuan()
+}
+class DiWang
+{
+    +DiWang()
+}
+class ShuaiXing
+{
+    +ShuaiXing()
+}
+class BingXing
+{
+    +BingXing()
+}
+class SiXing
+{
+    +SiXing()
+}
+class MuXing
+{
+    +MuXing()
+}
+class JueXing
+{
+    +JueXing()
+}
+class TaiXing
+{
+    +TaiXing()
+}
+class YangXing
+{
+    +YangXing()
+}
+
+class MingZhu
+{
+    +MingZhu()
+}
+class ShenZhu
+{
+    +ShenZhu()
+}
+
+
+StarBase <|-- BodyPalace
+StarBase <|-- LifePalace
+StarBase <|-- BrotherPalace
+StarBase <|-- CouplePalace
+StarBase <|-- ChildrenPalace
+StarBase <|-- MoneyPalace
+StarBase <|-- DiseasePalace
+StarBase <|-- MigrationPalace
+StarBase <|-- SlavePalace
+StarBase <|-- FunctionaryPalace
+StarBase <|-- FarmlandPalace
+StarBase <|-- FortunePalace
+StarBase <|-- ParentPalace
+StarBase <|-- ZiWei
+StarBase <|-- TianJi
+StarBase <|-- TaiYang
+StarBase <|-- WuQu
+StarBase <|-- TianTong
+StarBase <|-- LianZhen
+StarBase <|-- TianFu
+StarBase <|-- TaiYin
+StarBase <|-- TanLang
+StarBase <|-- JuMen
+StarBase <|-- TianXiang
+StarBase <|-- TianLiang
+StarBase <|-- QiSha
+StarBase <|-- PoJun
+StarBase <|-- WenChang
+StarBase <|-- WenQu
+StarBase <|-- HuoXing
+StarBase <|-- LingXing
+StarBase <|-- DiJie
+StarBase <|-- TianKong
+StarBase <|-- TaiFu
+StarBase <|-- FengGao
+StarBase <|-- ZuoFu
+StarBase <|-- YouBi
+StarBase <|-- TianXing
+StarBase <|-- TianYao
+StarBase <|-- TianMa
+StarBase <|-- JieShen
+StarBase <|-- TianWu
+StarBase <|-- TianYue_2
+StarBase <|-- YinSha
+StarBase <|-- SanTai
+StarBase <|-- BaZuo
+StarBase <|-- EnGuang
+StarBase <|-- TianGui
+StarBase <|-- LuCun_
+StarBase <|-- QingYang
+StarBase <|-- TuoLuo
+StarBase <|-- TianKui
+StarBase <|-- TianYue
+StarBase <|-- TianGuan
+StarBase <|-- TianFu_2
+StarBase <|-- HuaLu
+StarBase <|-- HuaQuan
+StarBase <|-- HuaKe
+StarBase <|-- HuaJi
+StarBase <|-- BoShi
+StarBase <|-- LiShi
+StarBase <|-- QingLong
+StarBase <|-- XiaoHao
+StarBase <|-- JiangJun
+StarBase <|-- ZouShu
+StarBase <|-- FeiLian
+StarBase <|-- XiShen
+StarBase <|-- BingFu
+StarBase <|-- DaHao
+StarBase <|-- FuBing
+StarBase <|-- GuanFu
+StarBase <|-- DiKong
+StarBase <|-- TianKu
+StarBase <|-- TianXu
+StarBase <|-- LongChi
+StarBase <|-- FengGe
+StarBase <|-- HongLuan
+StarBase <|-- TianXi
+StarBase <|-- FeiLian_2
+StarBase <|-- PoSui
+StarBase <|-- GuChen
+StarBase <|-- GuaSu
+StarBase <|-- TianCai
+StarBase <|-- TianShou
+StarBase <|-- ChangSheng
+StarBase <|-- MuYu
+StarBase <|-- GuanDai
+StarBase <|-- LinGuan
+StarBase <|-- DiWang
+StarBase <|-- ShuaiXing
+StarBase <|-- BingXing
+StarBase <|-- SiXing
+StarBase <|-- MuXing
+StarBase <|-- JueXing
+StarBase <|-- TaiXing
+StarBase <|-- YangXing
+
+
+@enduml
