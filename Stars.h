@@ -34,14 +34,15 @@ class StarBase
 private:
 protected:
     DiZhi Palace;
-    std::string Name;
+
 public:
     StarBase();
     // 要有宫的信息，宫的信息即为12地支之一。
-    std::string showName(){return this->Name;};
+
     DiZhi showPalace(){return this->Palace;};
     void setPalace(DiZhi palace){Palace = palace;};
     void setName(std::string name){Name = name;};
+    std::string Name;
 };
 
 class BodyPalace : public StarBase

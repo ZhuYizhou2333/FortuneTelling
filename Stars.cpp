@@ -1389,7 +1389,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Zi)
             {
-                std::cout << _stars[i]->showName() <<std::flush<< " ";
+                std::cout << _stars[i]->Name<<std::flush<< " ";
             }
         }
     }
@@ -1401,7 +1401,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Chou)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << std::flush<<" ";
             }
         }
     }
@@ -1413,7 +1413,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Yin)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1424,7 +1424,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Mao)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1435,7 +1435,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Chen)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1446,7 +1446,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Si)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1457,7 +1457,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Wu)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1468,7 +1468,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Wei)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1479,7 +1479,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Shen)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1490,7 +1490,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::You)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1502,7 +1502,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Xu)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }
@@ -1513,7 +1513,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Hai)
             {
-                std::cout << _stars[i]->showName() << " ";
+                std::cout << _stars[i]->Name << " ";
             }
         }
     }

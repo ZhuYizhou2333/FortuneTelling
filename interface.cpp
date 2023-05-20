@@ -253,7 +253,9 @@ void ParticularTypeView(TypesManage &alltype,Type &type)
         break;
     default:
         // 进入命例查看界面，传入类型管理对象与选择的命例分类。
-        ViewCase(alltype, type._Cases[in - 1]);
+        ViewCase(type._Cases[in - 1]);
+        // system("pause");
+        // type._Cases[in - 1].show();
         break;
     }
 
@@ -263,10 +265,11 @@ void NewCase()
 {
 }
 // 排盘
-void ViewCase(TypesManage &alltype,Case &c)
+void ViewCase(Case &c)
 {
+    system("cls");
     c.show();
-    system("pause");
+    // system("pause");
 }
 
 TypesManage::TypesManage() : _Types(4)
