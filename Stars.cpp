@@ -1260,7 +1260,7 @@ YangXing::YangXing(WuXingJu wwuxing /* = WuXingJu::JinSi */, Gender ggender /*  
 
 //**************************************命主身主************************************
 
-Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude /* = 120.0 */, Gender ggender /* =Gender::Male */) : info(BBirthTime, LLongitude), _gender(ggender)
+Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude /* = 120.0 */, Gender ggender /* =Gender::Male */ ,std::string nname/*  = "张三" */, std::string rremark/*  = "无备注" */) : info(BBirthTime, LLongitude), _gender(ggender),_name(nname),_remark(rremark)
 {
     _yinyang = static_cast<YinYang>(static_cast<int>(info._NianZhi) % 2);
     s1 = BodyPalace(info._YueZhi, info._ShiZhi);
@@ -1276,21 +1276,21 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
     s11 = FarmlandPalace(info._YueZhi, info._ShiZhi);
     s12 = FortunePalace(info._YueZhi, info._ShiZhi);
     s13 = ParentPalace(info._YueZhi, info._ShiZhi);
-    wuxing = WuXingJuXing(info._NianGan, s2.Palace); // 五行局
+    wuxing = WuXingJuXing(info._NianGan, s2.showPalace()); // 五行局
     s15 = ZiWei(wuxing.WuXing, info.LDay);
-    s16 = TianJi(s15.Palace);
-    s17 = TaiYang(s15.Palace);
-    s18 = WuQu(s15.Palace);
-    s19 = TianTong(s15.Palace);
-    s20 = LianZhen(s15.Palace);
-    s21 = TianFu(s15.Palace);
-    s22 = TaiYin(s21.Palace);
-    s23 = TanLang(s21.Palace);
-    s24 = JuMen(s21.Palace);
-    s25 = TianXiang(s21.Palace);
-    s26 = TianLiang(s21.Palace);
-    s27 = QiSha(s21.Palace);
-    s28 = PoJun(s21.Palace);
+    s16 = TianJi(s15.showPalace());
+    s17 = TaiYang(s15.showPalace());
+    s18 = WuQu(s15.showPalace());
+    s19 = TianTong(s15.showPalace());
+    s20 = LianZhen(s15.showPalace());
+    s21 = TianFu(s15.showPalace());
+    s22 = TaiYin(s21.showPalace());
+    s23 = TanLang(s21.showPalace());
+    s24 = JuMen(s21.showPalace());
+    s25 = TianXiang(s21.showPalace());
+    s26 = TianLiang(s21.showPalace());
+    s27 = QiSha(s21.showPalace());
+    s28 = PoJun(s21.showPalace());
 
     s29 = WenChang(info._ShiZhi);
     s30 = WenQu(info._ShiZhi);
@@ -1311,10 +1311,10 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
     s44 = TianYue_2(info._YueZhi);
     s45 = YinSha(info._YueZhi);
 
-    s46 = SanTai(s37.Palace, info.LDay);
-    s47 = BaZuo(s38.Palace, info.LDay);
-    s48 = EnGuang(s29.Palace, info.LDay);
-    s49 = TianGui(s30.Palace, info.LDay);
+    s46 = SanTai(s37.showPalace(), info.LDay);
+    s47 = BaZuo(s38.showPalace(), info.LDay);
+    s48 = EnGuang(s29.showPalace(), info.LDay);
+    s49 = TianGui(s30.showPalace(), info.LDay);
     s50 = LuCun_(info._NianGan);
     s51 = QingYang(info._NianGan);
     s52 = TuoLuo(info._NianGan);
@@ -1323,30 +1323,30 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
     s55 = TianGuan(info._NianGan);
     s56 = TianFu_2(info._NianGan);
 
-    DiZhi HUALU[10]{s20.Palace, s16.Palace, s19.Palace, s22.Palace, s23.Palace, s18.Palace, s17.Palace, s24.Palace, s26.Palace, s28.Palace};
+    DiZhi HUALU[10]{s20.showPalace(), s16.showPalace(), s19.showPalace(), s22.showPalace(), s23.showPalace(), s18.showPalace(), s17.showPalace(), s24.showPalace(), s26.showPalace(), s28.showPalace()};
     s57 = HuaLu(info._NianGan, HUALU);
 
-    DiZhi HUAQUAN[10]{s28.Palace, s26.Palace, s16.Palace, s19.Palace, s22.Palace, s23.Palace, s18.Palace, s17.Palace, s15.Palace, s24.Palace};
+    DiZhi HUAQUAN[10]{s28.showPalace(), s26.showPalace(), s16.showPalace(), s19.showPalace(), s22.showPalace(), s23.showPalace(), s18.showPalace(), s17.showPalace(), s15.showPalace(), s24.showPalace()};
     s58 = HuaQuan(info._NianGan, HUAQUAN);
 
-    DiZhi HUAKE[10]{s18.Palace, s15.Palace, s29.Palace, s16.Palace, s38.Palace, s26.Palace, s22.Palace, s30.Palace, s37.Palace, s22.Palace};
+    DiZhi HUAKE[10]{s18.showPalace(), s15.showPalace(), s29.showPalace(), s16.showPalace(), s38.showPalace(), s26.showPalace(), s22.showPalace(), s30.showPalace(), s37.showPalace(), s22.showPalace()};
     s59 = HuaKe(info._NianGan, HUAKE);
 
-    DiZhi HUAJI[10]{s17.Palace, s22.Palace, s20.Palace, s24.Palace, s16.Palace, s30.Palace, s19.Palace, s29.Palace, s18.Palace, s23.Palace};
+    DiZhi HUAJI[10]{s17.showPalace(), s22.showPalace(), s20.showPalace(), s24.showPalace(), s16.showPalace(), s30.showPalace(), s19.showPalace(), s29.showPalace(), s18.showPalace(), s23.showPalace()};
     s60 = HuaJi(info._NianGan, HUAJI);
 
-    s61 = BoShi(s50.Palace, _yinyang, _gender);
-    s62 = LiShi(s50.Palace, _yinyang, _gender);
-    s63 = QingLong(s50.Palace, _yinyang, _gender);
-    s64 = XiaoHao(s50.Palace, _yinyang, _gender);
-    s65 = JiangJun(s50.Palace, _yinyang, _gender);
-    s66 = ZouShu(s50.Palace, _yinyang, _gender);
-    s67 = FeiLian(s50.Palace, _yinyang, _gender);
-    s68 = XiShen(s50.Palace, _yinyang, _gender);
-    s69 = BingFu(s50.Palace, _yinyang, _gender);
-    s70 = DaHao(s50.Palace, _yinyang, _gender);
-    s71 = FuBing(s50.Palace, _yinyang, _gender);
-    s72 = GuanFu(s50.Palace, _yinyang, _gender);
+    s61 = BoShi(s50.showPalace(), _yinyang, _gender);
+    s62 = LiShi(s50.showPalace(), _yinyang, _gender);
+    s63 = QingLong(s50.showPalace(), _yinyang, _gender);
+    s64 = XiaoHao(s50.showPalace(), _yinyang, _gender);
+    s65 = JiangJun(s50.showPalace(), _yinyang, _gender);
+    s66 = ZouShu(s50.showPalace(), _yinyang, _gender);
+    s67 = FeiLian(s50.showPalace(), _yinyang, _gender);
+    s68 = XiShen(s50.showPalace(), _yinyang, _gender);
+    s69 = BingFu(s50.showPalace(), _yinyang, _gender);
+    s70 = DaHao(s50.showPalace(), _yinyang, _gender);
+    s71 = FuBing(s50.showPalace(), _yinyang, _gender);
+    s72 = GuanFu(s50.showPalace(), _yinyang, _gender);
 
     s73 = DiKong(info._NianZhi);
     s74 = TianKu(info._NianZhi);
@@ -1360,10 +1360,10 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
     s82 = GuChen(info._NianZhi);
     s83 = GuaSu(info._NianZhi);
 
-    DiZhi TIANCAI[12]{s2.Palace, s13.Palace, s12.Palace, s11.Palace, s10.Palace, s9.Palace, s8.Palace, s7.Palace, s6.Palace, s5.Palace, s4.Palace, s3.Palace};
+    DiZhi TIANCAI[12]{s2.showPalace(), s13.showPalace(), s12.showPalace(), s11.showPalace(), s10.showPalace(), s9.showPalace(), s8.showPalace(), s7.showPalace(), s6.showPalace(), s5.showPalace(), s4.showPalace(), s3.showPalace()};
     s84 = TianCai(info._NianZhi, TIANCAI);
 
-    s85 = TianShou(info._NianZhi, s1.Palace);
+    s85 = TianShou(info._NianZhi, s1.showPalace());
 
     s86 = ChangSheng(wuxing.WuXing, _gender, _yinyang);
     s87 = MuYu(wuxing.WuXing, _gender, _yinyang);
@@ -1387,9 +1387,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Zi)
+            if (_stars[i]->showPalace() == DiZhi::Zi)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1399,9 +1399,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Chou)
+            if (_stars[i]->showPalace() == DiZhi::Chou)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1411,9 +1411,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Yin)
+            if (_stars[i]->showPalace() == DiZhi::Yin)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1422,9 +1422,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Mao)
+            if (_stars[i]->showPalace() == DiZhi::Mao)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1433,9 +1433,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Chen)
+            if (_stars[i]->showPalace() == DiZhi::Chen)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1444,9 +1444,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Si)
+            if (_stars[i]->showPalace() == DiZhi::Si)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1455,9 +1455,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Wu)
+            if (_stars[i]->showPalace() == DiZhi::Wu)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1466,9 +1466,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Wei)
+            if (_stars[i]->showPalace() == DiZhi::Wei)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1477,9 +1477,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Shen)
+            if (_stars[i]->showPalace() == DiZhi::Shen)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1488,9 +1488,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::You)
+            if (_stars[i]->showPalace() == DiZhi::You)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1500,9 +1500,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Xu)
+            if (_stars[i]->showPalace() == DiZhi::Xu)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }
@@ -1511,9 +1511,9 @@ void Case::show()
     {
         if (_stars[i] != nullptr)
         {
-            if (_stars[i]->Palace == DiZhi::Hai)
+            if (_stars[i]->showPalace() == DiZhi::Hai)
             {
-                std::cout << _stars[i]->Name << " ";
+                std::cout << _stars[i]->showName() << " ";
             }
         }
     }

@@ -23,6 +23,7 @@ int main()
 
 int main()
 {
+   // SetConsoleOutputCP(65001);//set output encoding to UTF8
    // TianGan a = TianGan::Jia;//这是一种初始化方式
    /* TianGan a = static_cast<TianGan>(2);//这也是一种初始化方式
    switch (a)
@@ -53,17 +54,17 @@ int main()
 
    // BodyPalace p1;
 
-   clock_t start, end; // 定义clock_t变量
-   start = clock();//开始时间
+   // clock_t start, end; // 定义clock_t变量
+   // start = clock();//开始时间
    
-   Case p2(199002231934, 120);
-   p2.show();
+   // Case p2(199002231934, 120);
+   // p2.show();
 
-   end = clock();// 结束时间
-   std::cout << "time = " << double(end - start) / CLOCKS_PER_SEC << "s" << std::endl; // 输出时间（单位：ｓ）
+   // end = clock();// 结束时间
+   // std::cout << "time = " << double(end - start) / CLOCKS_PER_SEC << "s" << std::endl; // 输出时间（单位：ｓ）
    // sizhu sizhu1;//这是用来测试构造函数的。
-   // FunctionChoose();
-   system("pause");
+   FunctionChoose();
+   // system("pause");
 
    return 0;
 }

@@ -33,12 +33,15 @@ class StarBase
 {
 private:
 protected:
-
+    DiZhi Palace;
+    std::string Name;
 public:
     StarBase();
     // 要有宫的信息，宫的信息即为12地支之一。
-    DiZhi Palace;
-    std::string Name;
+    std::string showName(){return Name;};
+    DiZhi showPalace(){return Palace;};
+    void setPalace(DiZhi palace){Palace = palace;};
+    void setName(std::string name){Name = name;};
 };
 
 class BodyPalace : public StarBase
@@ -950,8 +953,6 @@ public:
 class Case
 {
 private:
-    YinYang _yinyang;
-    Gender _gender;
     sizhu info;
 
     BodyPalace s1;
@@ -1064,7 +1065,11 @@ private:
     StarBase *_stars[100]{&s1,&s2,&s3,&s4,&s5,&s6,&s7,&s8,&s9,&s10,&s11,&s12,&s13,nullptr,&s15,&s16,&s17,&s18,&s19,&s20,&s21,&s22,&s23,&s24,&s25,&s26,&s27,&s28,&s29,&s30,&s31,&s32,&s33,&s34,&s35,&s36,&s37,&s38,&s39,&s40,&s41,&s42,&s43,&s44,&s45,&s46,&s47,&s48,&s49,&s50,&s51,&s52,&s53,&s54,&s55,&s56,&s57,&s58,&s59,&s60,&s61,&s62,&s63,&s64,&s65,&s66,&s67,&s68,&s69,&s70,&s71,&s72,&s73,&s74,&s75,&s76,&s77,&s78,&s79,&s80,&s81,&s82,&s83,&s84,&s85,&s86,&s87,&s88,&s89,&s90,&s91,&s92,&s93,&s94,&s95,&s96,&s97};
 
 public:
-    Case(unsigned long long BBirthTime = 199002231934, double LLongitude = 120.0, Gender ggender = Gender::Male);
+    YinYang _yinyang;
+    Gender _gender;
+    std::string _name;
+    std::string _remark;
+    Case(unsigned long long BBirthTime = 199002231934, double LLongitude = 120.0, Gender ggender = Gender::Male, std::string nname = "张三", std::string rremark = "无备注");
     void show();
 };
 

@@ -10,16 +10,95 @@ void GotoXY(int x, int y)
 using std::cin;
 using std::cout;
 
-// void Fresh()
-// {
-//     GotoXY();
-//     for (int i = 0; i < 20; i++)
-//     {
-//         cout <<"\r";
-//     }
-//     GotoXY();
-// }
+void Stringsplit(std::string str, const char split, std::vector<std::string> &res)
+{
+    std::istringstream iss(str);       // 输入流
+    std::string token;                 // 接收缓冲区
+    while (getline(iss, token, split)) // 以split为分隔符
+    {
+        res.push_back(token);
+    }
+}
 
+// 存储格式：命例分类名 姓名 生时 男女 出生经度 备注
+
+// 使用文件初始化命例分类。
+void InitTypes(TypesManage &alltype)
+{
+    // 打开文件
+    std::ifstream infile("file.txt");
+    if (!infile.is_open())
+    {
+        std::cerr << "错误：无法打开文件" << std::endl;
+        system("pause");
+    }
+    // 读取数据
+    std::string line;
+    while (std::getline(infile, line))
+    {
+        std::vector<std::string> strList;
+        Stringsplit(line, ' ', strList); // strList中存储有一系列可以构造命例的信息。
+        Case c;
+        if (strList.size() == 6)
+        {
+            // 构造命例
+            Gender g;
+            if (strList[3] == "男")
+            {
+                g = Gender::Male;
+            }
+            else
+            {
+                g = Gender::Female;
+            }
+            unsigned long long birth = 0;
+            std::istringstream bb(strList[2]);
+            bb >> birth;
+            double longitude = 120;
+            std::istringstream ll(strList[2]);
+            ll >> longitude;
+            c = Case(birth, longitude, g, strList[1], strList[4]);
+            // 遍历alltype，找到对应的Type，将Case添加进去。如果没有Type，就新建一个Type。
+            bool flag = false;
+            for (auto &i : alltype._Types)
+            {
+                if (i._Name == strList[0])
+                {
+                    i.AddCase(c);
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+            {
+                Type t(strList[0]);
+                t.AddCase(c);
+                alltype._Types.push_back(t);
+            }
+        }
+        else
+        {
+            bool flag = false;
+            for (auto &i : alltype._Types)
+            {
+                if (i._Name == strList[0])
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+            {
+                Type t(strList[0]);
+                alltype._Types.push_back(t);
+            }
+        }
+        
+    }
+
+    // 关闭文件
+    infile.close();
+}
 // 登录界面，包含账户密码输入等。
 void LogIn()
 {
@@ -55,13 +134,19 @@ void FunctionChoose()
 // 命例分类查看功能，包含命例的分类与可选的编辑选项。
 void AllTypeView()
 {
+    TypesManage alltype; // 仅有调用此函数时重新从文件中构造。现在是默认构造。
+    InitTypes(alltype);  // 传引用从文件中构造。
     system("cls");
     cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
     cout << "\t0.返回功能选择界面\n";
-    cout << "\t1.编辑，导入与导出分类\n\n";
+    cout << "\t1.编辑，导入与导出分类\n";
     // 这里是具体的命例分类。
+    for (int i = 0; i < alltype.ShowAmount(); i++)
+    {
+        cout << "\t" << i + 2 << "." << alltype._Types[i]._Name << "\n";
+    }
 
-    cout << "请选择：";
+    cout << "\n请选择：";
 
     short in = 1;
     cin >> in;
@@ -71,14 +156,14 @@ void AllTypeView()
         FunctionChoose();
         break;
     case 1:
-        TypeEdit();
+        TypeEdit(alltype); // 进入分类编辑界面，传入类型管理对象。
     default:
         break;
     }
 }
 // 命例分类编辑功能，可以导向添加，删除，导入，导出。
 
-void TypeEdit()
+void TypeEdit(TypesManage &alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
@@ -97,10 +182,10 @@ void TypeEdit()
         AllTypeView();
         break;
     case 1:
-        TypeAdd();
+        TypeAdd(alltype);
         break;
     case 2:
-        TypeDelete;
+        TypeDelete(alltype);
         break;
     case 3:
 
@@ -112,16 +197,27 @@ void TypeEdit()
 }
 
 // 命例分类添加功能。
-void TypeAdd()
+void TypeAdd(TypesManage &alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n\n";
     cout << "\t请输入需要添加的分类名称（输入0代表取消新建）\n\n";
     cout << "请输入：";
     // 这里需要接受新建的分类名称。
+    std::string Name;
+    cin >> Name;
+    if (Name == "0")
+    {
+        TypeEdit(alltype);
+    }
+    else
+    {
+        alltype.AddType(Name);
+        TypeEdit(alltype);
+    }
 }
 // 命例分类删除功能
-void TypeDelete()
+void TypeDelete(TypesManage &alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n";
@@ -150,4 +246,27 @@ void NewCase()
 // 排盘
 void ViewCase()
 {
+}
+
+TypesManage::TypesManage() : _Types(4)
+{
+    _Types[0] = Type("家人");
+    _Types[1] = Type("朋友");
+    _Types[2] = Type("亲戚");
+    _Types[3] = Type("同学");
+}
+
+int TypesManage::ShowAmount()
+{
+    return _Types.size();
+}
+
+void TypesManage::AddType(std::string name)
+{
+    _Types.push_back(Type(name));
+}
+
+void Type::AddCase(Case &c)
+{
+    _Cases.push_back(c);
 }
