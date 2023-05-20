@@ -55,9 +55,9 @@ void InitTypes(TypesManage &alltype)
             std::istringstream bb(strList[2]);
             bb >> birth;
             double longitude = 120;
-            std::istringstream ll(strList[2]);
+            std::istringstream ll(strList[4]);
             ll >> longitude;
-            c = Case(birth, longitude, g, strList[1], strList[4]);
+            c = Case(birth, longitude, g, strList[1], strList[5]);
             // 遍历alltype，找到对应的Type，将Case添加进去。如果没有Type，就新建一个Type。
             bool flag = false;
             for (auto &i : alltype._Types)
@@ -158,6 +158,8 @@ void AllTypeView()
     case 1:
         TypeEdit(alltype); // 进入分类编辑界面，传入类型管理对象。
     default:
+        // 进入命例查看界面，传入类型管理对象与选择的命例分类。
+        ParticularTypeView(alltype, alltype._Types[in - 2]);
         break;
     }
 }
@@ -229,23 +231,42 @@ void TypeDelete(TypesManage &alltype)
     // 这里需要接受删除的分类名称。
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView()
+void ParticularTypeView(TypesManage &alltype,Type &type)
 {
     system("cls");
     cout << "用户：1234Aa\n";
-    cout << "分类《家人》中的命例：\n\n";
-    cout << "\t1.姓名：  性别：   备注：   \n\n";
-
-    cout << "\t请输入数字查看命例排盘结果\n\n";
+    cout << "分类\t"<< type._Name<<"\t中的命例：\n\n";
+    //遍历type中的命例，输出姓名，性别，备注等。
+    for (int i = 0; i < type._Cases.size(); i++)
+    {
+        cout << "\t" << i + 1 << ".姓名：" << type._Cases[i]._name <<"\t备注："<<type._Cases[i]._remark<< "\n";
+    }
+    cout << "请输入数字查看命例排盘结果（输入0返回命例分类查看界面）\n\n";
     cout << "请输入：";
+    // 接受选择的数字
+    short in = 1;
+    cin >> in;
+    switch (in)
+    {
+    case 0:
+        AllTypeView();
+        break;
+    default:
+        // 进入命例查看界面，传入类型管理对象与选择的命例分类。
+        ViewCase(alltype, type._Cases[in - 1]);
+        break;
+    }
+
 }
 // 新建命例。
 void NewCase()
 {
 }
 // 排盘
-void ViewCase()
+void ViewCase(TypesManage &alltype,Case &c)
 {
+    c.show();
+    system("pause");
 }
 
 TypesManage::TypesManage() : _Types(4)

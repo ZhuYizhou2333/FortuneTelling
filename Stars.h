@@ -38,8 +38,8 @@ protected:
 public:
     StarBase();
     // 要有宫的信息，宫的信息即为12地支之一。
-    std::string showName(){return Name;};
-    DiZhi showPalace(){return Palace;};
+    std::string showName(){return this->Name;};
+    DiZhi showPalace(){return this->Palace;};
     void setPalace(DiZhi palace){Palace = palace;};
     void setName(std::string name){Name = name;};
 };
