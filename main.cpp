@@ -58,10 +58,7 @@ int main()
    // start = clock();//开始时间
    
    Case p2(200503141923,120,Gender::Male,"朱羿州","无");
-   // p2.show();
-   Case &p3=p2;
-   p3.show();
-
+   p2.show();
    // end = clock();// 结束时间
    // std::cout << "time = " << double(end - start) / CLOCKS_PER_SEC << "s" << std::endl; // 输出时间（单位：ｓ）
    // sizhu sizhu1;//这是用来测试构造函数的。
