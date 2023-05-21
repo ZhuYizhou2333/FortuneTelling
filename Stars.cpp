@@ -1382,6 +1382,8 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
 void Case::show()
 { // 使用循环，如果宫位信息等于对应宫信息，那么输出星的名字。
 
+    std::cout << "命例排盘结果：\n";
+    std::cout << "姓名:"<<_name<<"\n";
     std::cout << "子: ";
     for (int i = 0; i < 97; i++)
     {

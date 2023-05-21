@@ -235,7 +235,7 @@ void ParticularTypeView(TypesManage &alltype,Type &type)
 {
     system("cls");
     cout << "用户：1234Aa\n";
-    cout << "分类\t"<< type._Name<<"\t中的命例：\n\n";
+    cout << "分类 "<< type._Name<<" 中的命例：\n\n";
     //遍历type中的命例，输出姓名，性别，备注等。
     for (int i = 0; i < type._Cases.size(); i++)
     {
