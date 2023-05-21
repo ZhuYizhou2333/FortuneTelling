@@ -56,7 +56,7 @@ void ParticularTypeView(TypesManage &alltype,Type &type);
 // 新建命例。
 void NewCase(TypesManage &alltype);
 // 排盘
-void ViewCase(Case &c);
+void ViewCase(Case c);
 
 
 

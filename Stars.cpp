@@ -1260,7 +1260,7 @@ YangXing::YangXing(WuXingJu wwuxing /* = WuXingJu::JinSi */, Gender ggender /*  
 
 //**************************************命主身主************************************
 
-Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude /* = 120.0 */, Gender ggender /* =Gender::Male */ ,std::string nname/*  = "张三" */, std::string rremark/*  = "无备注" */) : info(BBirthTime, LLongitude), _gender(ggender),_name(nname),_remark(rremark)
+Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude /* = 120.0 */, Gender ggender /* =Gender::Male */, std::string nname /*  = "张三" */, std::string rremark /*  = "无备注" */) : info(BBirthTime, LLongitude), _gender(ggender), _name(nname), _remark(rremark)
 {
     _yinyang = static_cast<YinYang>(static_cast<int>(info._NianZhi) % 2);
     s1 = BodyPalace(info._YueZhi, info._ShiZhi);
@@ -1389,7 +1389,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Zi)
             {
-                std::cout << _stars[i]->Name<<std::flush<< " ";
+                std::cout << _stars[i]->Name << std::flush << " ";
             }
         }
     }
@@ -1401,7 +1401,7 @@ void Case::show()
         {
             if (_stars[i]->showPalace() == DiZhi::Chou)
             {
-                std::cout << _stars[i]->Name << std::flush<<" ";
+                std::cout << _stars[i]->Name << std::flush << " ";
             }
         }
     }
@@ -1518,4 +1518,128 @@ void Case::show()
         }
     }
     std::cout << "\n";
+}
+
+// 复制构造函数
+Case::Case(const Case &c)
+    : info(c.info), s1(c.s1), s2(c.s2), s3(c.s3), s4(c.s4),
+      s5(c.s5), s6(c.s6), s7(c.s7), s8(c.s8), s9(c.s9),
+      s10(c.s10), s11(c.s11), s12(c.s12), s13(c.s13), wuxing(c.wuxing), s15(c.s15),
+      s16(c.s16), s17(c.s17), s18(c.s18), s19(c.s19), s20(c.s20),
+      s21(c.s21), s22(c.s22), s23(c.s23), s24(c.s24), s25(c.s25),
+      s26(c.s26), s27(c.s27), s28(c.s28), s29(c.s29), s30(c.s30),
+      s31(c.s31), s32(c.s32), s33(c.s33), s34(c.s34), s35(c.s35),
+      s36(c.s36), s37(c.s37), s38(c.s38), s39(c.s39), s40(c.s40),
+      s41(c.s41), s42(c.s42), s43(c.s43), s44(c.s44), s45(c.s45),
+      s46(c.s46), s47(c.s47), s48(c.s48), s49(c.s49), s50(c.s50),
+      s51(c.s51), s52(c.s52), s53(c.s53), s54(c.s54), s55(c.s55),
+      s56(c.s56), s57(c.s57), s58(c.s58), s59(c.s59), s60(c.s60),
+      s61(c.s61), s62(c.s62), s63(c.s63), s64(c.s64), s65(c.s65),
+      s66(c.s66), s67(c.s67), s68(c.s68), s69(c.s69), s70(c.s70),
+      s71(c.s71), s72(c.s72), s73(c.s73), s74(c.s74), s75(c.s75),
+      s76(c.s76), s77(c.s77), s78(c.s78), s79(c.s79), s80(c.s80),
+      s81(c.s81), s82(c.s82), s83(c.s83), s84(c.s84), s85(c.s85),
+      s86(c.s86), s87(c.s87), s88(c.s88), s89(c.s89), s90(c.s90),
+      s91(c.s91), s92(c.s92), s93(c.s93), s94(c.s94), s95(c.s95),
+      s96(c.s96), s97(c.s97), _yinyang(c._yinyang), _gender(c._gender),
+      _name(c._name), _remark(c._remark)
+{
+    // 深复制 StarBase 对象数组
+    _stars[0] = &s1;
+    _stars[1] = &s2;
+    _stars[2] = &s3;
+    _stars[3] = &s4;
+    _stars[4] = &s5;
+    _stars[5] = &s6;
+    _stars[6] = &s7;
+    _stars[7] = &s8;
+    _stars[8] = &s9;
+    _stars[9] = &s10;
+    _stars[10] = &s11;
+    _stars[11] = &s12;
+    _stars[12] = &s13;
+    _stars[13] = nullptr;
+    _stars[14] = &s15;
+    _stars[15] = &s16;
+    _stars[16] = &s17;
+    _stars[17] = &s18;
+    _stars[18] = &s19;
+    _stars[19] = &s20;
+    _stars[20] = &s21;
+    _stars[21] = &s22;
+    _stars[22] = &s23;
+    _stars[23] = &s24;
+    _stars[24] = &s25;
+    _stars[25] = &s26;
+    _stars[26] = &s27;
+    _stars[27] = &s28;
+    _stars[28] = &s29;
+    _stars[29] = &s30;
+    _stars[30] = &s31;
+    _stars[31] = &s32;
+    _stars[32] = &s33;
+    _stars[33] = &s34;
+    _stars[34] = &s35;
+    _stars[35] = &s36;
+    _stars[36] = &s37;
+    _stars[37] = &s38;
+    _stars[38] = &s39;
+    _stars[39] = &s40;
+    _stars[40] = &s41;
+    _stars[41] = &s42;
+    _stars[42] = &s43;
+    _stars[43] = &s44;
+    _stars[44] = &s45;
+    _stars[45] = &s46;
+    _stars[46] = &s47;
+    _stars[47] = &s48;
+    _stars[48] = &s49;
+    _stars[49] = &s50;
+    _stars[50] = &s51;
+    _stars[51] = &s52;
+    _stars[52] = &s53;
+    _stars[53] = &s54;
+    _stars[54] = &s55;
+    _stars[55] = &s56;
+    _stars[56] = &s57;
+    _stars[57] = &s58;
+    _stars[58] = &s59;
+    _stars[59] = &s60;
+    _stars[60] = &s61;
+    _stars[61] = &s62;
+    _stars[62] = &s63;
+    _stars[63] = &s64;
+    _stars[64] = &s65;
+    _stars[65] = &s66;
+    _stars[66] = &s67;
+    _stars[67] = &s68;
+    _stars[68] = &s69;
+    _stars[69] = &s70;
+    _stars[70] = &s71;
+    _stars[71] = &s72;
+    _stars[72] = &s73;
+    _stars[73] = &s74;
+    _stars[74] = &s75;
+    _stars[75] = &s76;
+    _stars[76] = &s77;
+    _stars[77] = &s78;
+    _stars[78] = &s79;
+    _stars[79] = &s80;
+    _stars[80] = &s81;
+    _stars[81] = &s82;
+    _stars[82] = &s83;
+    _stars[83] = &s84;
+    _stars[84] = &s85;
+    _stars[85] = &s86;
+    _stars[86] = &s87;
+    _stars[87] = &s88;
+    _stars[88] = &s89;
+    _stars[89] = &s90;
+    _stars[90] = &s91;
+    _stars[91] = &s92;
+    _stars[92] = &s93;
+    _stars[93] = &s94;
+    _stars[94] = &s95;
+    _stars[95] = &s96;
+    _stars[96] = &s97;
 }

@@ -1072,6 +1072,8 @@ public:
     std::string _remark;
     Case(unsigned long long BBirthTime = 199002231934, double LLongitude = 120.0, Gender ggender = Gender::Male, std::string nname = "张三", std::string rremark = "无备注");
     void show();
+    //复制构造函数
+    Case(const Case &c);
 };
 
 #endif
