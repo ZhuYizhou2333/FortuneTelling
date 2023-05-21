@@ -231,7 +231,7 @@ void TypeDelete(TypesManage &alltype)
     // 这里需要接受删除的分类名称。
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage &alltype,Type &type)
+void ParticularTypeView(TypesManage &alltype,Type type)
 {
     system("cls");
     cout << "用户：1234Aa\n";
@@ -268,6 +268,8 @@ void NewCase()
 void ViewCase(Case c)
 {
     system("cls");
+    cout << "用户：1234Aa\n";
+    cout << "姓名：" << c._name << "\t备注：" << c._remark << "\n\n";
     c.show();
     // system("pause");
 }

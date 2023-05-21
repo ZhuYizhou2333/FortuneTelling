@@ -52,7 +52,7 @@ void TypeAdd(TypesManage &alltype);
 // 命例删除功能
 void TypeDelete(TypesManage &alltype);
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage &alltype,Type &type);
+void ParticularTypeView(TypesManage &alltype,Type type);
 // 新建命例。
 void NewCase(TypesManage &alltype);
 // 排盘
