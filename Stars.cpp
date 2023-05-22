@@ -1522,6 +1522,7 @@ void Case::show()
     std::cout << "\n";
 }
 
+
 // 复制构造函数
 Case::Case(const Case &c)
     : info(c.info), s1(c.s1), s2(c.s2), s3(c.s3), s4(c.s4),

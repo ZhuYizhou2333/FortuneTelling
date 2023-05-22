@@ -23,8 +23,9 @@ void Stringsplit(std::string str, const char split, std::vector<std::string> &re
 // 存储格式：命例分类名 姓名 生时 男女 出生经度 备注
 
 // 使用文件初始化命例分类。
-void InitTypes(TypesManage &alltype)
+TypesManage InitTypes()
 {
+    TypesManage alltype;
     // 打开文件
     std::ifstream infile("file.txt");
     if (!infile.is_open())
@@ -62,7 +63,7 @@ void InitTypes(TypesManage &alltype)
             bool flag = false;
             for (auto &i : alltype._Types)
             {
-                if (i._Name == strList[0])
+                if (i.GetName() == strList[0])
                 {
                     i.AddCase(c);
                     flag = true;
@@ -81,7 +82,7 @@ void InitTypes(TypesManage &alltype)
             bool flag = false;
             for (auto &i : alltype._Types)
             {
-                if (i._Name == strList[0])
+                if (i.GetName() == strList[0])
                 {
                     flag = true;
                     break;
@@ -98,6 +99,8 @@ void InitTypes(TypesManage &alltype)
 
     // 关闭文件
     infile.close();
+
+    return alltype;
 }
 // 登录界面，包含账户密码输入等。
 void LogIn()
@@ -134,8 +137,7 @@ void FunctionChoose()
 // 命例分类查看功能，包含命例的分类与可选的编辑选项。
 void AllTypeView()
 {
-    TypesManage alltype; // 仅有调用此函数时重新从文件中构造。现在是默认构造。
-    InitTypes(alltype);  // 传引用从文件中构造。
+    TypesManage alltype(InitTypes());  // 从文件中构造。
     system("cls");
     cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
     cout << "\t0.返回功能选择界面\n";
@@ -143,7 +145,7 @@ void AllTypeView()
     // 这里是具体的命例分类。
     for (int i = 0; i < alltype.ShowAmount(); i++)
     {
-        cout << "\t" << i + 2 << "." << alltype._Types[i]._Name << "\n";
+        cout << "\t" << i + 2 << "." << alltype._Types[i].GetName() << "\n";
     }
 
     cout << "\n请选择：";
@@ -165,7 +167,7 @@ void AllTypeView()
 }
 // 命例分类编辑功能，可以导向添加，删除，导入，导出。
 
-void TypeEdit(TypesManage &alltype)
+void TypeEdit(TypesManage alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
@@ -199,7 +201,7 @@ void TypeEdit(TypesManage &alltype)
 }
 
 // 命例分类添加功能。
-void TypeAdd(TypesManage &alltype)
+void TypeAdd(TypesManage alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n\n";
@@ -219,23 +221,26 @@ void TypeAdd(TypesManage &alltype)
     }
 }
 // 命例分类删除功能
-void TypeDelete(TypesManage &alltype)
+void TypeDelete(TypesManage alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n";
     cout << "存在的分类：\n\n";
-    cout << "\t1.家人\n";
-    cout << "\tn.xyz\n\n";
+    // 这里需要遍历alltype，输出所有的分类名称。
+    for (int i = 0; i < alltype.ShowAmount(); i++)
+    {
+        cout << "\t" << i + 1 << "." << alltype._Types[i].GetName() << "\n";
+    }
     cout << "\t请输入需要删除的分类名称（输入0代表取消删除）\n\n";
     cout << "请输入：";
     // 这里需要接受删除的分类名称。
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage &alltype,Type type)
+void ParticularTypeView(TypesManage alltype,Type type)
 {
     system("cls");
     cout << "用户：1234Aa\n";
-    cout << "分类 "<< type._Name<<" 中的命例：\n\n";
+    cout << "分类 "<< type.GetName() <<" 中的命例：\n\n";
     //遍历type中的命例，输出姓名，性别，备注等。
     for (int i = 0; i < type._Cases.size(); i++)
     {
@@ -252,10 +257,8 @@ void ParticularTypeView(TypesManage &alltype,Type type)
         AllTypeView();
         break;
     default:
-        // 进入命例查看界面，传入类型管理对象与选择的命例分类。
-        ViewCase(type._Cases[in - 1]);
-        // system("pause");
-        // type._Cases[in - 1].show();
+        // 进入命例查看界面，传入类型管理对象与选择的命例。
+        ViewCase(alltype, type._Cases[in - 1]);
         break;
     }
 
@@ -265,11 +268,9 @@ void NewCase()
 {
 }
 // 排盘
-void ViewCase(Case c)
+void ViewCase(TypesManage alltype,Case c)
 {
     system("cls");
-    cout << "用户：1234Aa\n\n";
-    cout << "姓名：" << c._name << "\t备注：" << c._remark << "\n\n";
     c.show();
     // system("pause");
 }
@@ -280,19 +281,4 @@ TypesManage::TypesManage() : _Types(4)
     _Types[1] = Type("朋友");
     _Types[2] = Type("亲戚");
     _Types[3] = Type("同学");
-}
-
-int TypesManage::ShowAmount()
-{
-    return _Types.size();
-}
-
-void TypesManage::AddType(std::string name)
-{
-    _Types.push_back(Type(name));
-}
-
-void Type::AddCase(Case &c)
-{
-    _Cases.push_back(c);
 }
