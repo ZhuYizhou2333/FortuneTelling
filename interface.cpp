@@ -165,7 +165,7 @@ void AllTypeView()
 }
 // 命例分类编辑功能，可以导向添加，删除，导入，导出。
 
-void TypeEdit(TypesManage &alltype)
+void TypeEdit(TypesManage alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
@@ -199,7 +199,7 @@ void TypeEdit(TypesManage &alltype)
 }
 
 // 命例分类添加功能。
-void TypeAdd(TypesManage &alltype)
+void TypeAdd(TypesManage alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n\n";
@@ -219,7 +219,7 @@ void TypeAdd(TypesManage &alltype)
     }
 }
 // 命例分类删除功能
-void TypeDelete(TypesManage &alltype)
+void TypeDelete(TypesManage alltype)
 {
     system("cls");
     cout << "用户：1234Aa\n";
@@ -231,7 +231,7 @@ void TypeDelete(TypesManage &alltype)
     // 这里需要接受删除的分类名称。
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage &alltype,Type &type)
+void ParticularTypeView(TypesManage alltype,Type type)
 {
     system("cls");
     cout << "用户：1234Aa\n";
@@ -263,7 +263,7 @@ void NewCase()
 {
 }
 // 排盘
-void ViewCase(TypesManage &alltype,Case &c)
+void ViewCase(TypesManage alltype,Case c)
 {
     c.show();
     system("pause");
@@ -287,7 +287,7 @@ void TypesManage::AddType(std::string name)
     _Types.push_back(Type(name));
 }
 
-void Type::AddCase(Case &c)
+void Type::AddCase(Case c)
 {
     _Cases.push_back(c);
 }

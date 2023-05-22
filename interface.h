@@ -18,7 +18,7 @@ public:
     std::string _Name;
     std::vector<Case>_Cases;
     Type(std::string nname="未命名分类") : _Name(nname){};
-    void AddCase(Case &c);
+    void AddCase(Case c);
     int ShowAmount();
 };
 
@@ -46,17 +46,17 @@ void FunctionChoose();
 // 命例分类查看功能，包含命例的分类与可选的编辑选项。
 void AllTypeView();
 // 分类编辑选择界面，可以导向添加，删除，导入，导出。
-void TypeEdit(TypesManage &alltype);
+void TypeEdit(TypesManage alltype);
 // 命例添加功能。
-void TypeAdd(TypesManage &alltype);
+void TypeAdd(TypesManage alltype);
 // 命例删除功能
-void TypeDelete(TypesManage &alltype);
+void TypeDelete(TypesManage alltype);
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage &alltype,Type &type);
+void ParticularTypeView(TypesManage alltype,Type type);
 // 新建命例。
-void NewCase(TypesManage &alltype);
+void NewCase(TypesManage alltype);
 // 排盘
-void ViewCase(TypesManage &alltype,Case &c);
+void ViewCase(TypesManage alltype,Case c);
 
 
 
