@@ -268,7 +268,7 @@ void NewCase()
 void ViewCase(Case c)
 {
     system("cls");
-    cout << "用户：1234Aa\n";
+    cout << "用户：1234Aa\n\n";
     cout << "姓名：" << c._name << "\t备注：" << c._remark << "\n\n";
     c.show();
     // system("pause");
