@@ -265,6 +265,7 @@ void NewCase()
 // 排盘
 void ViewCase(TypesManage alltype,Case c)
 {
+    system("cls");
     c.show();
     system("pause");
 }
