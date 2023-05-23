@@ -46,7 +46,7 @@ void FunctionChoose();
 void AllTypeView();
 // 分类编辑选择界面，可以导向添加，删除，导入，导出。
 void TypeEdit(TypesManage alltype);
-// 命例添加功能。
+// 命例添加功能，添加后自动写入文件。
 void TypeAdd(TypesManage alltype);
 // 命例删除功能
 void TypeDelete(TypesManage alltype);

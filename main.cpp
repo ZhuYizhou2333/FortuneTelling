@@ -59,7 +59,7 @@
 int main()
 
 {
-
+   FunctionChoose();
    return 0;
 }
 

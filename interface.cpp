@@ -217,6 +217,14 @@ void TypeAdd(TypesManage alltype)
     else
     {
         alltype.AddType(Name);
+        //将新添加的分类写入文件：“file.txt”。
+        //打开文件
+        std::ofstream outfile;
+        outfile.open("file.txt", std::ios::app);
+        //向文件末尾换行写入字符串Name。
+        outfile << "\n"<< Name;
+        //关闭文件
+        outfile.close();
         TypeEdit(alltype);
     }
 }
