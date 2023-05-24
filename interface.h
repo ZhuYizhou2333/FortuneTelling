@@ -8,7 +8,7 @@
 #include "Stars.h"
 #include <sstream>
 // 用来移动输出光标。
-void GotoXY(int x = 0, int y = 0);
+void GotoXY(SHORT x = 0, SHORT y = 0);
 
 class Type
 {

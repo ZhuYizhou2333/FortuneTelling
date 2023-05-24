@@ -1,7 +1,7 @@
 #include <iostream>
 #include "interface.h"
 
-void GotoXY(int x, int y)
+void GotoXY(SHORT x, SHORT y)
 {
     COORD pos = {x, y};
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -287,7 +287,7 @@ void ParticularTypeView(TypesManage alltype, Type type)
     cout << "用户：1234Aa\n";
     cout << "分类 " << type.GetName() << " 中的命例：\n\n";
     // 遍历type中的命例，输出姓名，性别，备注等。
-    for (int i = 0; i < type._Cases.size(); i++)
+    for (int i = 0; i < static_cast<int>( type._Cases.size()); i++)
     {
         cout << "\t" << i + 1 << ".姓名：" << type._Cases[i]._name << "\t备注：" << type._Cases[i]._remark << "\n";
     }
