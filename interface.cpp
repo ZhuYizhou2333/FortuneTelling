@@ -299,16 +299,15 @@ void TypeDelete()
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(short typeNum)
 {
-    TypesManage alltype(InitTypes()); // 从文件中构造。
     bool shouldExit = false;          // 控制循环是否退出的变量
-
     while (!shouldExit)
     {
+        TypesManage alltype(InitTypes()); // 从文件中构造。
         system("cls");
         cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
         cout << "\t0.返回功能选择界面\n";
         cout << "\t1.新建命例\n";
-        cout << "\t2.删除命例\n";
+        cout << "\t2.删除命例"<<std::endl;
         // 遍历type中的命例，输出姓名，性别，备注等。
         for (int i = 0; i < static_cast<int>(alltype._Types[typeNum]._Cases.size()); i++)
         {
@@ -340,14 +339,17 @@ void ParticularTypeView(short typeNum)
 void NewCase(short typeNum)
 {
     TypesManage alltype(InitTypes()); // 从文件中构造。
+    system("cls");
     // 这里需要接受新建的命例的姓名，性别，备注等。
     std::string name;
+    cout << "请输入姓名：";
     cin >> name;
     Gender ggender;
     bool RightIn = false;
+    std::string GenderS;
+    cout << "请输入性别（男/女）：";
     while (!RightIn)
     {
-        std::string GenderS;
         cin >> GenderS;
         if (GenderS == "男")
         {
@@ -428,7 +430,8 @@ void NewCase(short typeNum)
     std::string remark;
     cout << "请输入备注：";
     cin >> remark;
-    unsigned long long id = yy * 100000000 + mm * 1000000 + dd * 10000 + hh * 100 + min;
+    unsigned long long id = 0;
+    id =static_cast<unsigned long long>(yy) * 100000000 + static_cast<unsigned long long>(mm) * 1000000 + static_cast<unsigned long long>(dd) * 10000 + static_cast<unsigned long long>(hh) * 100 + min;
     // 生成命例对象
     Case c(id, longitude, ggender, name, remark);
     // 将命例对象加入到类型管理对象中。
@@ -449,6 +452,12 @@ void NewCase(short typeNum)
     outfile<<longitude<<" "<<remark;
     // 关闭文件
     outfile.close();
+}
+
+// 删除命例
+void DeleteCase(short typeNum)
+{
+
 }
 // 排盘
 void ViewCase(Case c)
