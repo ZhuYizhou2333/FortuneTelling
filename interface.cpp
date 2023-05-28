@@ -108,100 +108,123 @@ void LogIn()
 // 功能选择界面，包含算命与占卜功能。
 void FunctionChoose()
 {
-    system("cls");
-    cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
-    cout << "\t0.重新登录\n";
-    cout << "\t1.排盘模式\n";
-    cout << "\t2.占卜模式\n\n";
-    cout << "请选择：";
+    bool shouldExit = false; // 控制循环是否退出的变量
 
-    short in = 1;
-    cin >> in;
-    switch (in)
+    while (!shouldExit)
     {
-    case 0:
-        LogIn();
-        break;
-    case 1:
-        AllTypeView();
-        break;
-    case 2:
-        break;
-    case 6:
-        break;
-    default:
-        break;
+        system("cls");
+        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "\t0.重新登录\n";
+        cout << "\t1.排盘模式\n";
+        cout << "\t2.占卜模式\n\n";
+        cout << "请选择：";
+
+        short in = 1;
+        cin >> in;
+        switch (in)
+        {
+        case 0:
+            shouldExit = true;
+            break;
+        case 1:
+            AllTypeView();
+            break;
+        case 2:
+            break;
+        case 6:
+            break;
+        default:
+            break;
+        }
     }
 }
 // 命例分类查看功能，包含命例的分类与可选的编辑选项。
 void AllTypeView()
 {
-    TypesManage alltype(InitTypes()); // 从文件中构造。
-    system("cls");
-    cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
-    cout << "\t0.返回功能选择界面\n";
-    cout << "\t1.编辑，导入与导出分类\n";
-    // 这里是具体的命例分类。
-    for (int i = 0; i < alltype.ShowAmount(); i++)
-    {
-        cout << "\t" << i + 2 << "." << alltype._Types[i].GetName() << "\n";
-    }
+    bool shouldExit = false; // 控制循环是否退出的变量
 
-    cout << "\n请选择：";
-
-    short in = 1;
-    cin >> in;
-    switch (in)
+    while (!shouldExit)
     {
-    case 0:
-        FunctionChoose();
-        break;
-    case 1:
-        TypeEdit(alltype); // 进入分类编辑界面，传入类型管理对象。
-    default:
-        // 进入命例查看界面，传入类型管理对象与选择的命例分类。
-        ParticularTypeView(alltype, alltype._Types[in - 2]);
-        break;
+        TypesManage alltype(InitTypes()); // 从文件中构造。
+        system("cls");
+        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "\t0.返回功能选择界面\n";
+        cout << "\t1.编辑，导入与导出分类\n";
+        // 这里是具体的命例分类。
+        for (int i = 0; i < alltype.ShowAmount(); i++)
+        {
+            cout << "\t" << i + 2 << "." << alltype._Types[i].GetName() << "\n";
+        }
+
+        cout << "\n请选择：";
+
+        short in = 1;
+        cin >> in;
+        // 检测数字是否大于范围
+        if (in > alltype.ShowAmount() + 1)
+        {
+            cout << "输入错误，请重新输入：";
+            cin >> in;
+        }
+        switch (in)
+        {
+        case 0: // 返回功能选择界面
+            shouldExit = true;
+            break;
+        case 1:
+            TypeEdit(alltype); // 进入分类编辑界面，传入类型管理对象。
+            break;
+        default:
+            // 进入命例查看界面，传入类型管理对象与选择的命例分类。
+            ParticularTypeView(alltype, alltype._Types[in - 2]);
+            break;
+        }
     }
 }
 // 命例分类编辑功能，可以导向添加，删除，导入，导出。
 
 void TypeEdit(TypesManage alltype)
 {
-    system("cls");
-    cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
-    cout << "\t0.返回分类查看页面\n";
-    cout << "\t1.添加分类\n";
-    cout << "\t2.删除分类\n";
-    cout << "\t3.导出指定分类（导出为加密文本文件）\n";
-    cout << "\t4.导入分类\n\n";
-    cout << "请选择：";
-    // 接受选择的数字
-    short in = 1;
-    cin >> in;
-    switch (in)
+    bool shouldExit = false; // 控制循环是否退出的变量
+
+    while (!shouldExit)
     {
-    case 0:
-        AllTypeView();
-        break;
-    case 1:
-        TypeAdd(alltype);
-        break;
-    case 2:
-        TypeDelete(alltype);
-        break;
-    case 3:
+        system("cls");
+        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "\t0.返回分类查看页面\n";
+        cout << "\t1.添加分类\n";
+        cout << "\t2.删除分类\n";
+        cout << "\t3.导出指定分类（导出为加密文本文件）\n";
+        cout << "\t4.导入分类\n\n";
+        cout << "请选择：";
+        // 接受选择的数字
+        short in = 1;
+        cin >> in;
+        switch (in)
+        {
+        case 0:
+            shouldExit = true;
+            break;
+        case 1:
+            TypeAdd(alltype);
+            break;
+        case 2:
+            TypeDelete(alltype);
+            break;
+        case 3:
 
-    case 4:
+        case 4:
 
-    default:
-        break;
+        default:
+            break;
+        }
     }
 }
 
 // 命例分类添加功能。
 void TypeAdd(TypesManage alltype)
 {
+
     system("cls");
     cout << "用户：1234Aa\n\n";
     cout << "\t请输入需要添加的分类名称（输入0代表取消新建）\n\n";
@@ -209,11 +232,7 @@ void TypeAdd(TypesManage alltype)
     // 这里需要接受新建的分类名称。
     std::string Name;
     cin >> Name;
-    if (Name == "0")
-    {
-        TypeEdit(alltype);
-    }
-    else
+    if (Name != "0")
     {
         alltype.AddType(Name);
         // 将新添加的分类写入文件：“file.txt”。
@@ -237,18 +256,14 @@ void TypeDelete(TypesManage alltype)
     // 这里需要遍历alltype，输出所有的分类名称。
     for (int i = 0; i < alltype.ShowAmount(); i++)
     {
-        cout << "\t" <<alltype._Types[i].GetName() << "\n";
+        cout << "\t" << alltype._Types[i].GetName() << "\n";
     }
     cout << "\t请输入需要删除的分类名称（输入0代表取消删除）\n\n";
     cout << "请输入：";
     // 这里需要接受删除的分类名称。
     std::string Name;
     cin >> Name;
-    if (Name == "0")
-    {
-        TypeEdit(alltype);
-    }
-    else
+    if (Name != "0")
     {
         // 打开文件
         std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
@@ -283,28 +298,33 @@ void TypeDelete(TypesManage alltype)
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(TypesManage alltype, Type type)
 {
-    system("cls");
-    cout << "用户：1234Aa\n";
-    cout << "分类 " << type.GetName() << " 中的命例：\n\n";
-    // 遍历type中的命例，输出姓名，性别，备注等。
-    for (int i = 0; i < static_cast<int>( type._Cases.size()); i++)
+    bool shouldExit = false; // 控制循环是否退出的变量
+
+    while (!shouldExit)
     {
-        cout << "\t" << i + 1 << ".姓名：" << type._Cases[i]._name << "\t备注：" << type._Cases[i]._remark << "\n";
-    }
-    cout << "请输入数字查看命例排盘结果（输入0返回命例分类查看界面）\n\n";
-    cout << "请输入：";
-    // 接受选择的数字
-    short in = 1;
-    cin >> in;
-    switch (in)
-    {
-    case 0:
-        AllTypeView();
-        break;
-    default:
-        // 进入命例查看界面，传入类型管理对象与选择的命例。
-        ViewCase(alltype, type._Cases[in - 1]);
-        break;
+        system("cls");
+        cout << "用户：1234Aa\n";
+        cout << "分类 " << type.GetName() << " 中的命例：\n\n";
+        // 遍历type中的命例，输出姓名，性别，备注等。
+        for (int i = 0; i < static_cast<int>(type._Cases.size()); i++)
+        {
+            cout << "\t" << i + 1 << ".姓名：" << type._Cases[i]._name << "\t备注：" << type._Cases[i]._remark << "\n";
+        }
+        cout << "请输入数字查看命例排盘结果（输入0返回命例分类查看界面）\n\n";
+        cout << "请输入：";
+        // 接受选择的数字
+        short in = 1;
+        cin >> in;
+        switch (in)
+        {
+        case 0:
+            shouldExit = true;
+            break;
+        default:
+            // 进入命例查看界面，传入类型管理对象与选择的命例。
+            ViewCase(alltype, type._Cases[in - 1]);
+            break;
+        }
     }
 }
 // 新建命例。
@@ -316,7 +336,7 @@ void ViewCase(TypesManage alltype, Case c)
 {
     system("cls");
     c.show();
-    // system("pause");
+    system("pause");
 }
 
 TypesManage::TypesManage() : _Types(4)
