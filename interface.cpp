@@ -428,7 +428,7 @@ void NewCase(short typeNum)
     std::string remark;
     cout << "请输入备注：";
     cin >> remark;
-    unsigned long long int id = yy * 100000000 + mm * 1000000 + dd * 10000 + hh * 100 + min;
+    unsigned long long id = yy * 100000000 + mm * 1000000 + dd * 10000 + hh * 100 + min;
     // 生成命例对象
     Case c(id, longitude, ggender, name, remark);
     // 将命例对象加入到类型管理对象中。
@@ -438,7 +438,6 @@ void NewCase(short typeNum)
     outfile.open("file.txt", std::ios::app);
     // 将命例对象写入文件
     outfile << "\n"<< alltype._Types[typeNum].GetName()<<" "<<name<<" "<<id<<" ";
-    
     if (ggender==Gender::Male)
     {
         outfile<<"男 ";
