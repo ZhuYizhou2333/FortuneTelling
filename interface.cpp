@@ -172,20 +172,21 @@ void AllTypeView()
             shouldExit = true;
             break;
         case 1:
-            TypeEdit(alltype); // 进入分类编辑界面，传入类型管理对象。
+            TypeEdit(); // 进入分类编辑界面，传入类型管理对象。
             break;
         default:
             // 进入命例查看界面，传入类型管理对象与选择的命例分类。
-            ParticularTypeView(alltype, alltype._Types[in - 2]);
+            ParticularTypeView(in - 2);
             break;
         }
     }
 }
 // 命例分类编辑功能，可以导向添加，删除，导入，导出。
 
-void TypeEdit(TypesManage alltype)
+void TypeEdit()
 {
-    bool shouldExit = false; // 控制循环是否退出的变量
+    TypesManage alltype(InitTypes()); // 从文件中构造。
+    bool shouldExit = false;          // 控制循环是否退出的变量
 
     while (!shouldExit)
     {
@@ -206,10 +207,10 @@ void TypeEdit(TypesManage alltype)
             shouldExit = true;
             break;
         case 1:
-            TypeAdd(alltype);
+            TypeAdd();
             break;
         case 2:
-            TypeDelete(alltype);
+            TypeDelete();
             break;
         case 3:
 
@@ -222,9 +223,9 @@ void TypeEdit(TypesManage alltype)
 }
 
 // 命例分类添加功能。
-void TypeAdd(TypesManage alltype)
+void TypeAdd()
 {
-
+    TypesManage alltype(InitTypes()); // 从文件中构造。
     system("cls");
     cout << "用户：1234Aa\n\n";
     cout << "\t请输入需要添加的分类名称（输入0代表取消新建）\n\n";
@@ -244,12 +245,12 @@ void TypeAdd(TypesManage alltype)
                 << Name;
         // 关闭文件
         outfile.close();
-        TypeEdit(alltype);
     }
 }
 // 命例分类删除功能
-void TypeDelete(TypesManage alltype)
+void TypeDelete()
 {
+    TypesManage alltype(InitTypes()); // 从文件中构造。
     system("cls");
     cout << "用户：1234Aa\n";
     cout << "存在的分类：\n\n";
@@ -292,25 +293,27 @@ void TypeDelete(TypesManage alltype)
         // 重命名临时文件为原文件名
         std::rename("file_temp.txt", "file.txt");
 
-        TypeEdit(alltype);
+        TypeEdit();
     }
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage alltype, Type type)
+void ParticularTypeView(short typeNum)
 {
-    bool shouldExit = false; // 控制循环是否退出的变量
+    TypesManage alltype(InitTypes()); // 从文件中构造。
+    bool shouldExit = false;          // 控制循环是否退出的变量
 
     while (!shouldExit)
     {
         system("cls");
-        cout << "用户：1234Aa\n";
-        cout << "分类 " << type.GetName() << " 中的命例：\n\n";
+        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "\t0.返回功能选择界面\n";
+        cout << "\t1.新建命例\n";
+        cout << "\t2.删除命例\n";
         // 遍历type中的命例，输出姓名，性别，备注等。
-        for (int i = 0; i < static_cast<int>(type._Cases.size()); i++)
+        for (int i = 0; i < static_cast<int>(alltype._Types[typeNum]._Cases.size()); i++)
         {
-            cout << "\t" << i + 1 << ".姓名：" << type._Cases[i]._name << "\t备注：" << type._Cases[i]._remark << "\n";
+            cout << "\t" << i + 3 << ".姓名：" << alltype._Types[typeNum]._Cases[i]._name << "\t备注：" << alltype._Types[typeNum]._Cases[i]._remark << "\n";
         }
-        cout << "请输入数字查看命例排盘结果（输入0返回命例分类查看界面）\n\n";
         cout << "请输入：";
         // 接受选择的数字
         short in = 1;
@@ -320,19 +323,136 @@ void ParticularTypeView(TypesManage alltype, Type type)
         case 0:
             shouldExit = true;
             break;
+        case 1:
+            NewCase(typeNum);
+            break;
+        case 2:
+            DeleteCase(typeNum);
+            break;
         default:
             // 进入命例查看界面，传入类型管理对象与选择的命例。
-            ViewCase(alltype, type._Cases[in - 1]);
+            ViewCase(alltype._Types[typeNum]._Cases[in - 3]);
             break;
         }
     }
 }
 // 新建命例。
-void NewCase()
+void NewCase(short typeNum)
 {
+    TypesManage alltype(InitTypes()); // 从文件中构造。
+    // 这里需要接受新建的命例的姓名，性别，备注等。
+    std::string name;
+    cin >> name;
+    Gender ggender;
+    bool RightIn = false;
+    while (!RightIn)
+    {
+        std::string GenderS;
+        cin >> GenderS;
+        if (GenderS == "男")
+        {
+            ggender = Gender::Male;
+            RightIn = true;
+        }
+        else if (GenderS == "女")
+        {
+            ggender = Gender::Female;
+            RightIn = true;
+        }
+        else
+            cout << "输入错误！请重新输入：";
+    }
+    RightIn = false;
+    int yy, mm, dd, hh, min;
+    while (!RightIn)
+    {
+        cout << "请输入出生年份：";
+        cin >> yy;
+        if (yy < 1910 || yy > 2085)
+            cout << "只接受1910-2085间的年份。请重新输入：";
+        else
+            RightIn = true;
+    }
+    RightIn = false;
+    while (!RightIn)
+    {
+        cout << "请输入出生月份：";
+        cin >> mm;
+        if (mm < 1 || mm > 12)
+            cout << "只接受1-12间的月份。请重新输入：";
+        else
+            RightIn = true;
+    }
+    RightIn = false;
+    while (!RightIn)
+    {
+        cout << "请输入出生日期：";
+        cin >> dd;
+        if (dd < 1 || dd > 31)
+            cout << "只接受1-31间的日期。请重新输入：";
+        else
+            RightIn = true;
+    }
+    RightIn = false;
+    while (!RightIn)
+    {
+        cout << "请输入出生小时：";
+        cin >> hh;
+        if (hh < 0 || hh > 23)
+            cout << "只接受0-23间的小时。请重新输入：";
+        else
+            RightIn = true;
+    }
+    RightIn = false;
+    while (!RightIn)
+    {
+        cout << "请输入出生分钟：";
+        cin >> min;
+        if (min < 0 || min > 59)
+            cout << "只接受0-59间的分钟。请重新输入：";
+        else
+            RightIn = true;
+    }
+    RightIn = false;
+    double longitude;
+    while (!RightIn)
+    {
+        cout << "请输入出生地经度：";
+        cin >> longitude;
+        if (longitude < -180 || longitude > 180)
+            cout << "只接受-180-180间的经度。请重新输入：";
+        else
+            RightIn = true;
+    }
+    RightIn = false;
+    std::string remark;
+    cout << "请输入备注：";
+    cin >> remark;
+    unsigned long long int id = yy * 100000000 + mm * 1000000 + dd * 10000 + hh * 100 + min;
+    // 生成命例对象
+    Case c(id, longitude, ggender, name, remark);
+    // 将命例对象加入到类型管理对象中。
+    alltype._Types[typeNum]._Cases.push_back(c);
+    // 以追加的方式打开文件
+    std::ofstream outfile;
+    outfile.open("file.txt", std::ios::app);
+    // 将命例对象写入文件
+    outfile << "\n"<< alltype._Types[typeNum].GetName()<<" "<<name<<" "<<id<<" ";
+    
+    if (ggender==Gender::Male)
+    {
+        outfile<<"男 ";
+    }
+    else
+    {
+        outfile<<"女 ";
+    }
+    outfile<<longitude<<" "<<remark;
+    // 关闭文件
+    outfile.close();
 }
 // 排盘
-void ViewCase(TypesManage alltype, Case c)
+void ViewCase(Case c)
 {
     system("cls");
     c.show();

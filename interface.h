@@ -45,16 +45,18 @@ void FunctionChoose();
 // 命例分类查看功能，包含命例的分类与可选的编辑选项。
 void AllTypeView();
 // 分类编辑选择界面，可以导向添加，删除，导入，导出。
-void TypeEdit(TypesManage alltype);
+void TypeEdit();
 // 命例添加功能，添加后自动写入文件。
-void TypeAdd(TypesManage alltype);
+void TypeAdd();
 // 命例删除功能
-void TypeDelete(TypesManage alltype);
+void TypeDelete();
 // 命例分类细致查看，可以看到姓名，生时，备注等。
-void ParticularTypeView(TypesManage alltype, Type type);
+void ParticularTypeView(short typeNum);
 // 新建命例。
-void NewCase(TypesManage alltype);
+void NewCase(short typeNum);
+//删除命例。
+void DeleteCase(short typeNum);
 // 排盘
-void ViewCase(TypesManage alltype, Case c);
+void ViewCase(Case c);
 
 #endif
