@@ -97,7 +97,7 @@ TypesManage InitTypes()
                     alltype._Types.push_back(t);
                 }
             }
-                }
+        }
     }
 
     // 关闭文件
@@ -269,34 +269,33 @@ void TypeDelete()
     std::string Name;
     cin >> Name;
     if (Name != "0")
+        return;
+    // 打开文件
+    std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
+
+    // 逐行读取文件信息
+    std::string line;
+    std::ifstream infile("file.txt");
+    while (getline(infile, line))
     {
-        // 打开文件
-        std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
-
-        // 逐行读取文件信息
-        std::string line;
-        std::ifstream infile("file.txt");
-        while (getline(infile, line))
+        std::vector<std::string> strList;
+        Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
+        // 如果分类名称与删除的名称相同，则删除这一行。
+        if (strList[0] != Name)
         {
-            std::vector<std::string> strList;
-            Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
-            // 如果分类名称与删除的名称相同，则删除这一行。
-            if (strList[0] != Name)
-            {
-                outfile << line << "\n";
-            }
+            outfile << line << "\n";
         }
-
-        // 关闭文件
-        infile.close();
-        outfile.close();
-
-        // 删除原文件
-        std::remove("file.txt");
-
-        // 重命名临时文件为原文件名
-        std::rename("file_temp.txt", "file.txt");
     }
+
+    // 关闭文件
+    infile.close();
+    outfile.close();
+
+    // 删除原文件
+    std::remove("file.txt");
+
+    // 重命名临时文件为原文件名
+    std::rename("file_temp.txt", "file.txt");
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(short typeNum)
@@ -344,8 +343,10 @@ void NewCase(short typeNum)
     system("cls");
     // 这里需要接受新建的命例的姓名，性别，备注等。
     std::string name;
-    cout << "请输入姓名：";
+    cout << "请输入姓名：（输入0代表取消新建）";
     cin >> name;
+    if (name == "0")
+        return;
     Gender ggender;
     bool RightIn = false;
     std::string GenderS;
