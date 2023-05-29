@@ -38,62 +38,66 @@ TypesManage InitTypes()
     while (std::getline(infile, line))
     {
         std::vector<std::string> strList;
-        Stringsplit(line, ' ', strList); // strList中存储有一系列可以构造命例的信息。
-        Case c;
-        if (strList.size() == 6)
+        if (line != "\n" && line != "\r" && line != "\r\n" && line != "\n\r" && line != "" && line != " ")
         {
-            // 构造命例
-            Gender g;
-            if (strList[3] == "男")
+
+            Stringsplit(line, ' ', strList); // strList中存储有一系列可以构造命例的信息。
+            Case c;
+            if (strList.size() == 6)
             {
-                g = Gender::Male;
-            }
-            else
-            {
-                g = Gender::Female;
-            }
-            unsigned long long birth = 0;
-            std::istringstream bb(strList[2]);
-            bb >> birth;
-            double longitude = 120;
-            std::istringstream ll(strList[4]);
-            ll >> longitude;
-            c = Case(birth, longitude, g, strList[1], strList[5]);
-            // 遍历alltype，找到对应的Type，将Case添加进去。如果没有Type，就新建一个Type。
-            bool flag = false;
-            for (auto &i : alltype._Types)
-            {
-                if (i.GetName() == strList[0])
+                // 构造命例
+                Gender g;
+                if (strList[3] == "男")
                 {
-                    i.AddCase(c);
-                    flag = true;
-                    break;
+                    g = Gender::Male;
+                }
+                else
+                {
+                    g = Gender::Female;
+                }
+                unsigned long long birth = 0;
+                std::istringstream bb(strList[2]);
+                bb >> birth;
+                double longitude = 120;
+                std::istringstream ll(strList[4]);
+                ll >> longitude;
+                c = Case(birth, longitude, g, strList[1], strList[5]);
+                // 遍历alltype，找到对应的Type，将Case添加进去。如果没有Type，就新建一个Type。
+                bool flag = false;
+                for (auto &i : alltype._Types)
+                {
+                    if (i.GetName() == strList[0])
+                    {
+                        i.AddCase(c);
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                {
+                    Type t(strList[0]);
+                    t.AddCase(c);
+                    alltype._Types.push_back(t);
                 }
             }
-            if (!flag)
+            else if (strList.size() == 1)
             {
-                Type t(strList[0]);
-                t.AddCase(c);
-                alltype._Types.push_back(t);
-            }
-        }
-        else
-        {
-            bool flag = false;
-            for (auto &i : alltype._Types)
-            {
-                if (i.GetName() == strList[0])
+                bool flag = false;
+                for (auto &i : alltype._Types)
                 {
-                    flag = true;
-                    break;
+                    if (i.GetName() == strList[0])
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                {
+                    Type t(strList[0]);
+                    alltype._Types.push_back(t);
                 }
             }
-            if (!flag)
-            {
-                Type t(strList[0]);
-                alltype._Types.push_back(t);
-            }
-        }
+                }
     }
 
     // 关闭文件
@@ -185,11 +189,11 @@ void AllTypeView()
 
 void TypeEdit()
 {
-    TypesManage alltype(InitTypes()); // 从文件中构造。
-    bool shouldExit = false;          // 控制循环是否退出的变量
+    bool shouldExit = false; // 控制循环是否退出的变量
 
     while (!shouldExit)
     {
+        TypesManage alltype(InitTypes()); // 从文件中构造。
         system("cls");
         cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
         cout << "\t0.返回分类查看页面\n";
@@ -292,14 +296,12 @@ void TypeDelete()
 
         // 重命名临时文件为原文件名
         std::rename("file_temp.txt", "file.txt");
-
-        TypeEdit();
     }
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(short typeNum)
 {
-    bool shouldExit = false;          // 控制循环是否退出的变量
+    bool shouldExit = false; // 控制循环是否退出的变量
     while (!shouldExit)
     {
         TypesManage alltype(InitTypes()); // 从文件中构造。
@@ -307,7 +309,7 @@ void ParticularTypeView(short typeNum)
         cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
         cout << "\t0.返回功能选择界面\n";
         cout << "\t1.新建命例\n";
-        cout << "\t2.删除命例"<<std::endl;
+        cout << "\t2.删除命例" << std::endl;
         // 遍历type中的命例，输出姓名，性别，备注等。
         for (int i = 0; i < static_cast<int>(alltype._Types[typeNum]._Cases.size()); i++)
         {
@@ -431,7 +433,7 @@ void NewCase(short typeNum)
     cout << "请输入备注：";
     cin >> remark;
     unsigned long long id = 0;
-    id =static_cast<unsigned long long>(yy) * 100000000 + static_cast<unsigned long long>(mm) * 1000000 + static_cast<unsigned long long>(dd) * 10000 + static_cast<unsigned long long>(hh) * 100 + min;
+    id = static_cast<unsigned long long>(yy) * 100000000 + static_cast<unsigned long long>(mm) * 1000000 + static_cast<unsigned long long>(dd) * 10000 + static_cast<unsigned long long>(hh) * 100 + min;
     // 生成命例对象
     Case c(id, longitude, ggender, name, remark);
     // 将命例对象加入到类型管理对象中。
@@ -440,16 +442,17 @@ void NewCase(short typeNum)
     std::ofstream outfile;
     outfile.open("file.txt", std::ios::app);
     // 将命例对象写入文件
-    outfile << "\n"<< alltype._Types[typeNum].GetName()<<" "<<name<<" "<<id<<" ";
-    if (ggender==Gender::Male)
+    outfile << "\n"
+            << alltype._Types[typeNum].GetName() << " " << name << " " << id << " ";
+    if (ggender == Gender::Male)
     {
-        outfile<<"男 ";
+        outfile << "男 ";
     }
     else
     {
-        outfile<<"女 ";
+        outfile << "女 ";
     }
-    outfile<<longitude<<" "<<remark;
+    outfile << longitude << " " << remark;
     // 关闭文件
     outfile.close();
 }
@@ -457,7 +460,41 @@ void NewCase(short typeNum)
 // 删除命例
 void DeleteCase(short typeNum)
 {
+    TypesManage alltype(InitTypes()); // 从文件中构造。
+    // 不清屏，直接输出。
+    //  输入要删除的命例对象的序号
+    std::string Name;
+    cout << "请输入要删除的命例的姓名：（输入0代表取消删除）";
+    cin >> Name;
+    if (Name != "0")
+    {
+        // 打开文件
+        std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
 
+        // 逐行读取文件信息
+        std::string line;
+        std::ifstream infile("file.txt");
+        while (getline(infile, line))
+        {
+            std::vector<std::string> strList;
+            Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
+            // 如果分类名称与删除的名称相同且命例名相同，则删除这一行。
+            if (strList[1] != Name || strList[0] != alltype._Types[typeNum].GetName())
+            {
+                outfile << line << "\n";
+            }
+        }
+
+        // 关闭文件
+        infile.close();
+        outfile.close();
+
+        // 删除原文件
+        std::remove("file.txt");
+
+        // 重命名临时文件为原文件名
+        std::rename("file_temp.txt", "file.txt");
+    }
 }
 // 排盘
 void ViewCase(Case c)
