@@ -246,7 +246,7 @@ void TypeAdd()
         outfile.open("file.txt", std::ios::app);
         // 向文件末尾换行写入字符串Name。
         outfile << "\n"
-                << Name;
+                << Name<<" ";
         // 关闭文件
         outfile.close();
     }
