@@ -237,19 +237,18 @@ void TypeAdd()
     // 这里需要接受新建的分类名称。
     std::string Name;
     cin >> Name;
-    if (Name != "0")
-    {
-        alltype.AddType(Name);
-        // 将新添加的分类写入文件：“file.txt”。
-        // 打开文件
-        std::ofstream outfile;
-        outfile.open("file.txt", std::ios::app);
-        // 向文件末尾换行写入字符串Name。
-        outfile << "\n"
-                << Name<<" ";
-        // 关闭文件
-        outfile.close();
-    }
+    if (Name == "0")
+        return;
+    alltype.AddType(Name);
+    // 将新添加的分类写入文件：“file.txt”。
+    // 打开文件
+    std::ofstream outfile;
+    outfile.open("file.txt", std::ios::app);
+    // 向文件末尾换行写入字符串Name。
+    outfile << "\n"
+            << Name << " ";
+    // 关闭文件
+    outfile.close();
 }
 // 命例分类删除功能
 void TypeDelete()
@@ -268,7 +267,7 @@ void TypeDelete()
     // 这里需要接受删除的分类名称。
     std::string Name;
     cin >> Name;
-    if (Name != "0")
+    if (Name == "0")
         return;
     // 打开文件
     std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
@@ -467,35 +466,34 @@ void DeleteCase(short typeNum)
     std::string Name;
     cout << "请输入要删除的命例的姓名：（输入0代表取消删除）";
     cin >> Name;
-    if (Name != "0")
+    if (Name == "0")
+        return;
+    // 打开文件
+    std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
+
+    // 逐行读取文件信息
+    std::string line;
+    std::ifstream infile("file.txt");
+    while (getline(infile, line))
     {
-        // 打开文件
-        std::ofstream outfile("file_temp.txt"); // 以输出模式打开一个临时文件
-
-        // 逐行读取文件信息
-        std::string line;
-        std::ifstream infile("file.txt");
-        while (getline(infile, line))
+        std::vector<std::string> strList;
+        Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
+        // 如果分类名称与删除的名称相同且命例名相同，则删除这一行。
+        if (strList[1] != Name || strList[0] != alltype._Types[typeNum].GetName())
         {
-            std::vector<std::string> strList;
-            Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
-            // 如果分类名称与删除的名称相同且命例名相同，则删除这一行。
-            if (strList[1] != Name || strList[0] != alltype._Types[typeNum].GetName())
-            {
-                outfile << line << "\n";
-            }
+            outfile << line << "\n";
         }
-
-        // 关闭文件
-        infile.close();
-        outfile.close();
-
-        // 删除原文件
-        std::remove("file.txt");
-
-        // 重命名临时文件为原文件名
-        std::rename("file_temp.txt", "file.txt");
     }
+
+    // 关闭文件
+    infile.close();
+    outfile.close();
+
+    // 删除原文件
+    std::remove("file.txt");
+
+    // 重命名临时文件为原文件名
+    std::rename("file_temp.txt", "file.txt");
 }
 // 排盘
 void ViewCase(Case c)
