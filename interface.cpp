@@ -277,6 +277,8 @@ void TypeDelete()
     std::ifstream infile("file.txt");
     while (getline(infile, line))
     {
+        if (line == ""||line=="\n"||line==" "||line==" \n")
+            continue;
         std::vector<std::string> strList;
         Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
         // 如果分类名称与删除的名称相同，则删除这一行。
@@ -476,6 +478,8 @@ void DeleteCase(short typeNum)
     std::ifstream infile("file.txt");
     while (getline(infile, line))
     {
+        if (line == ""||line=="\n"||line==" "||line==" \n")
+            continue;
         std::vector<std::string> strList;
         Stringsplit(line, ' ', strList); // strList的第一位存有分类名称。
         // 如果分类名称与删除的名称相同且命例名相同，则删除这一行。
