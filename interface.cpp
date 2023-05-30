@@ -118,9 +118,9 @@ void FunctionChoose()
     {
         system("cls");
         cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
-        cout << "\t0.重新登录\n";
-        cout << "\t1.排盘模式\n";
-        cout << "\t2.占卜模式\n\n";
+        cout << "\t0.退出程序\n";
+        cout << "\t1.排盘模式\n\n";
+        // cout << "\t2.占卜模式\n\n";
         cout << "请选择：";
 
         short in = 1;
@@ -134,10 +134,18 @@ void FunctionChoose()
             AllTypeView();
             break;
         case 2:
-            break;
+            // break;
         case 6:
-            break;
+            // break;
         default:
+            cout << "输入错误，请重新输入：";
+            Sleep(400);
+            cout <<".";
+            Sleep(400);
+            cout <<".";
+            Sleep(400);
+            cout <<".";
+            Sleep(800);
             break;
         }
     }
