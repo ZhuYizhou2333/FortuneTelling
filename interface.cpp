@@ -207,8 +207,8 @@ void TypeEdit()
         cout << "\t0.返回分类查看页面\n";
         cout << "\t1.添加分类\n";
         cout << "\t2.删除分类\n";
-        cout << "\t3.导出指定分类（导出为加密文本文件）\n";
-        cout << "\t4.导入分类\n\n";
+        cout << "\t3.导出全部\n";
+        cout << "\t4.导入文件\n\n";
         cout << "请选择：";
         // 接受选择的数字
         short in = 1;
@@ -225,7 +225,8 @@ void TypeEdit()
             TypeDelete();
             break;
         case 3:
-
+            TypeExport();
+            break;
         case 4:
             TypeImport();
         default:
@@ -336,6 +337,25 @@ void TypeImport()
     cout << "导入成功！\n";
     Sleep(1000);
 
+}
+// 命例导出功能
+void TypeExport()
+{
+    //新建文件
+    std::ofstream outfile;
+    outfile.open("Export.txt");
+    //把file.txt中的内容复制到file_temp.txt中
+    std::string line;
+    std::ifstream infile("file.txt");
+    while (getline(infile, line))
+    {
+        outfile << line << "\n";
+    }
+    //关闭文件
+    infile.close();
+    outfile.close();
+    cout << "导出成功！\n";
+    Sleep(1000);
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(short typeNum)

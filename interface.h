@@ -52,6 +52,8 @@ void TypeAdd();
 void TypeDelete();
 // 命例导入功能
 void TypeImport();
+// 命例导出功能
+void TypeExport();
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(short typeNum);
 // 新建命例。
