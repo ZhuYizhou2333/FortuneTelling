@@ -227,7 +227,7 @@ void TypeEdit()
         case 3:
 
         case 4:
-
+            TypeImport();
         default:
             break;
         }
@@ -306,15 +306,21 @@ void TypeDelete()
     // 重命名临时文件为原文件名
     std::rename("file_temp.txt", "file.txt");
 }
-// 命例分类导入功能
+// 命例导入功能
 void TypeImport()
 {
     //接受要导入的文件名
     std::string fileName;
-    std::cout << "请输入要导入的文件名：";
+    std::cout << "请输入要导入的文件名：（注意要包含拓展名）";
     std::cin >> fileName;
     //打开文件
     std::ifstream infile(fileName);
+    //打开失败则输出报错
+    if (!infile)
+    {
+        std::cout << "打开文件失败！\n";
+        system("pause");
+    }
     //逐行读取文件信息
     std::string line;
     //将文件逐行复制到file.txt中
@@ -327,6 +333,8 @@ void TypeImport()
     //关闭文件
     infile.close();
     outfile.close();
+    cout << "导入成功！\n";
+    Sleep(1000);
 
 }
 // 命例分类细致查看，可以看到姓名，生时，备注等。
