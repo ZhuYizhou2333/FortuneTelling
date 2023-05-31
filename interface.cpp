@@ -306,6 +306,29 @@ void TypeDelete()
     // 重命名临时文件为原文件名
     std::rename("file_temp.txt", "file.txt");
 }
+// 命例分类导入功能
+void TypeImport()
+{
+    //接受要导入的文件名
+    std::string fileName;
+    std::cout << "请输入要导入的文件名：";
+    std::cin >> fileName;
+    //打开文件
+    std::ifstream infile(fileName);
+    //逐行读取文件信息
+    std::string line;
+    //将文件逐行复制到file.txt中
+    std::ofstream outfile("file.txt", std::ios::app);
+    outfile << "\n";
+    while (getline(infile, line))
+    {
+        outfile << line << "\n";
+    }
+    //关闭文件
+    infile.close();
+    outfile.close();
+
+}
 // 命例分类细致查看，可以看到姓名，生时，备注等。
 void ParticularTypeView(short typeNum)
 {

@@ -10,7 +10,7 @@
         "stopAtEntry": false, 
         "cwd": "${fileDirname}", 
         "environment": [], 
-        "externalConsole": true,//选择false则在内部运行，不弹出窗口
+        "externalConsole": true,//选择false则在内置终端运行，不弹出窗口
         "internalConsoleOptions": "neverOpen",
         "MIMode": "gdb", 
         "miDebuggerPath": "D:\\mingw64\\bin\\gdb.exe", 
