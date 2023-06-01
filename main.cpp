@@ -82,8 +82,8 @@ int main()
       return 0;
    }
 
-   std::cout << "文件创建并隐藏成功" << std::endl;
-   system("pause");
+   // std::cout << "文件创建并隐藏成功" << std::endl;
+   // system("pause");
    FunctionChoose();
    return 0;
 }
