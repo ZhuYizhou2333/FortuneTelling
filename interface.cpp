@@ -27,12 +27,13 @@ TypesManage InitTypes()
 {
     TypesManage alltype;
     // 打开文件
-    std::ifstream infile("file.txt");
-    if (!infile.is_open())
-    {
-        std::cerr << "错误：无法打开文件" << std::endl;
-        system("pause");
-    }
+    std::ifstream infile;
+    infile.open("file.txt");
+    // if (!infile.is_open())
+    // {
+    //     std::cerr << "错误：无法打开文件" << std::endl;
+    //     system("pause");
+    // }
     // 读取数据
     std::string line;
     while (std::getline(infile, line))
