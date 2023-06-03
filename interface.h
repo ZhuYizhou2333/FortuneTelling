@@ -27,7 +27,7 @@ class TypesManage
 {
 public:
     std::vector<Type> _Types; // 在构造函数中初始化大小等。
-    TypesManage(); // TypeManage由Type组成，Type由Case组成。因此构造的时候，既要知道Type的信息，也要知道Case的信息。
+    TypesManage(); // TypeManage由Type组成，Type由Case组成。
     void AddType(std::string name){_Types.push_back(Type(name));};
     int ShowAmount() const {return _Types.size();};
 };
