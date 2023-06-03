@@ -345,7 +345,7 @@ class ZuoFu : public StarBase
 private:
 public:
     // 左辅星构造函数。
-    ZuoFu(DiZhi YueZhi = DiZhi::Yin);
+    ZuoFu(WORD llmonth=1);
 };
 
 // 右弼星类
@@ -354,7 +354,7 @@ class YouBi : public StarBase
 private:
 public:
     // 右弼星构造函数。
-    YouBi(DiZhi YueZhi = DiZhi::Yin);
+    YouBi(WORD llmonth=1);
 };
 
 // 天刑星类
@@ -363,7 +363,7 @@ class TianXing : public StarBase
 private:
 public:
     // 天刑星构造函数。
-    TianXing(DiZhi YueZhi = DiZhi::Yin);
+    TianXing(WORD llmonth=1);
 };
 
 // 天姚星类
@@ -372,7 +372,7 @@ class TianYao : public StarBase
 private:
 public:
     // 天姚星构造函数。
-    TianYao(DiZhi YueZhi = DiZhi::Yin);
+    TianYao(WORD llmonth=1);
 };
 
 // 天马星类
@@ -381,7 +381,7 @@ class TianMa : public StarBase
 private:
 public:
     // 天马星构造函数。
-    TianMa(DiZhi YueZhi = DiZhi::Yin);
+    TianMa(WORD llmonth=1);
 };
 
 // 解神星类
@@ -390,7 +390,7 @@ class JieShen : public StarBase
 private:
 public:
     // 解神星构造函数。
-    JieShen(DiZhi YueZhi = DiZhi::Yin);
+    JieShen(WORD llmonth=1);
 };
 
 // 天巫星类
@@ -399,7 +399,7 @@ class TianWu : public StarBase
 private:
 public:
     // 天巫星构造函数。
-    TianWu(DiZhi YueZhi = DiZhi::Yin);
+    TianWu(WORD llmonth=1);
 };
 
 // 天月星类
@@ -408,7 +408,7 @@ class TianYue_2 : public StarBase
 private:
 public:
     // 天月星构造函数。
-    TianYue_2(DiZhi YueZhi = DiZhi::Yin);
+    TianYue_2(WORD llmonth=1);
 };
 
 // 阴煞星类
@@ -417,7 +417,7 @@ class YinSha : public StarBase
 private:
 public:
     // 阴煞星构造函数。
-    YinSha(DiZhi YueZhi = DiZhi::Yin);
+    YinSha(WORD llmonth=1);
 };
 
 //**********************************日系诸星******************************************
@@ -932,23 +932,23 @@ public:
 //**************************************命主身主************************************
 
 // 命主
-class MingZhu
-{
-private:
-public:
-    // 命主构造函数。
-    MingZhu(DiZhi LifePalace = DiZhi::Chen);
-};
+// class MingZhu
+// {
+// private:
+// public:
+//     // 命主构造函数。
+//     MingZhu(DiZhi LifePalace = DiZhi::Chen);
+// };
 
-// 身主
+// // 身主
 
-class ShenZhu
-{
-private:
-public:
-    // 身主构造函数。
-    ShenZhu(DiZhi LifePalace = DiZhi::Chen);
-};
+// class ShenZhu
+// {
+// private:
+// public:
+//     // 身主构造函数。
+//     ShenZhu(DiZhi LifePalace = DiZhi::Chen);
+// };
 
 // 这个类用来统一初始化星，只需要一次计算八字。
 class Case
