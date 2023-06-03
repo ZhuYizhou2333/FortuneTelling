@@ -429,15 +429,6 @@ class YangXing
     +YangXing()
 }
 
-class MingZhu
-{
-    +MingZhu()
-}
-class ShenZhu
-{
-    +ShenZhu()
-}
-
 
 StarBase <|-- BodyPalace
 StarBase <|-- LifePalace
@@ -536,5 +527,136 @@ StarBase <|-- JueXing
 StarBase <|-- TaiXing
 StarBase <|-- YangXing
 
+class Case {
+    - info: sizhu
+    - s1: BodyPalace
+    - s2: LifePalace
+    - s3: BrotherPalace
+    - s4: CouplePalace
+    - s5: ChildrenPalace
+    - s6: MoneyPalace
+    - s7: DiseasePalace
+    - s8: MigrationPalace
+    - s9: SlavePalace
+    - s10: FunctionaryPalace
+    - s11: FarmlandPalace
+    - s12: FortunePalace
+    - s13: ParentPalace
+    - wuxing: WuXingJuXing
+    - s15: ZiWei
+    - s16: TianJi
+    - s17: TaiYang
+    - s18: WuQu
+    - s19: TianTong
+    - s20: LianZhen
+    - s21: TianFu
+    - s22: TaiYin
+    - s23: TanLang
+    - s24: JuMen
+    - s25: TianXiang
+    - s26: TianLiang
+    - s27: QiSha
+    - s28: PoJun
+    - s29: WenChang
+    - s30: WenQu
+    - s31: HuoXing
+    - s32: LingXing
+    - s33: DiJie
+    - s34: TianKong
+    - s35: TaiFu
+    - s36: FengGao
+    - s37: ZuoFu
+    - s38: YouBi
+    - s39: TianXing
+    - s40: TianYao
+    - s41: TianMa
+    - s42: JieShen
+    - s43: TianWu
+    - s44: TianYue_2
+    - s45: YinSha
+    - s46: SanTai
+    - s47: BaZuo
+    - s48: EnGuang
+    - s49: TianGui
+    - s50: LuCun_
+    - s51: QingYang
+    - s52: TuoLuo
+    - s53: TianKui
+    - s54: TianYue
+    - s55: TianGuan
+    - s56: TianFu_2
+    - s57: HuaLu
+    - s58: HuaQuan
+    - s59: HuaKe
+    - s60: HuaJi
+    - s61: BoShi
+    - s62: LiShi
+    - s63: QingLong
+    - s64: XiaoHao
+    - s65: JiangJun
+    - s66: ZouShu
+    - s67: FeiLian
+    - s68: XiShen
+    - s69: BingFu
+    - s70: DaHao
+    - s71: FuBing
+    - s72: GuanFu
+    - s73: DiKong
+    - s74: TianKu
+    - s75: TianXu
+    - s76: LongChi
+    - s77: FengGe
+    - s78: HongLuan
+    - s79: TianXi
+    - s80: FeiLian_2
+    - s81: PoSui
+    - s82: GuChen
+    - s83: GuaSu
+    - s84: TianCai
+    - s85: TianShou
+    - s86: ChangSheng
+    - s87: MuYu
+    - s88: GuanDai
+    - s89: LinGuan
+    - s90: DiWang
+    - s91: ShuaiXing
+    - s92: BingXing
+    - s93: SiXing
+    - s94: MuXing
+    - s95: JueXing
+    - s96: TaiXing
+    - s97: YangXing
+    - _stars[100]: StarBase[]
+    + _yinyang: YinYang
+    + _gender: Gender
+    + _name: std::string
+    + _remark: std::string
 
+    + Case(BBirthTime: unsigned long long = 199002231934, LLongitude: double = 120.0, ggender: Gender = Gender::Male, nname: std::string = "张三", rremark: std::string = "无备注")
+    + show()
+    + Case(c: const Case&)
+}
+
+
+class Type {
+    - _Name: std::string
+    - _Cases: std::vector<Case>
+    + Type(nname: std::string = "未命名分类")
+    + GetName(): std::string
+    + AddCase(c: Case)
+    + ShowAmount(): int
+}
+
+class TypesManage {
+    - _Types: std::vector<Type>
+    + TypesManage()
+    + AddType(name: std::string)
+    + ShowAmount(): int
+}
+
+Type "1" *-- "*" Case : _Cases
+TypesManage "1" *-- "*" Type : _Types
+Case "1" -- "100" StarBase : _stars
+sizhu "1" *-- "1" Case : info
+WuXingJuXing "1" *-- "1" Case : wuxing
 @enduml
