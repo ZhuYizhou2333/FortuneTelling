@@ -339,37 +339,37 @@ FengGao::FengGao(DiZhi ShiZhi /* =DiZhi::Xu */)
 //***********************************月系诸星**************************************
 
 // 左辅星类构造函数
-ZuoFu::ZuoFu(DiZhi YueZhi /* = DiZhi::Yin */)
+ZuoFu::ZuoFu(WORD llmonth)
 {
-    Palace = static_cast<DiZhi>((static_cast<int>(YueZhi) - 8 + 12 - 1) % 12 + 1);
+    Palace = static_cast<DiZhi>((llmonth - 8 + 12 - 1) % 12 + 1);
     Name = "左辅";
 }
 
 // 右弼星类构造函数
-YouBi::YouBi(DiZhi YueZhi /* = DiZhi::Yin */)
+YouBi::YouBi(WORD llmonth)
 {
-    Palace = static_cast<DiZhi>((12 - static_cast<int>(YueZhi) + 12 - 1) % 12 + 1);
+    Palace = static_cast<DiZhi>((12 - llmonth + 12 - 1) % 12 + 1);
     Name = "右弼";
 }
 
 // 天刑星类构造函数
-TianXing::TianXing(DiZhi YueZhi /* = DiZhi::Yin */)
+TianXing::TianXing(WORD llmonth)
 {
-    Palace = static_cast<DiZhi>((static_cast<int>(YueZhi) - 3 + 12 - 1) % 12 + 1);
+    Palace = static_cast<DiZhi>((llmonth - 3 + 12 - 1) % 12 + 1);
     Name = "天刑";
 }
 
 // 天姚星类构造函数
-TianYao::TianYao(DiZhi YueZhi /* = DiZhi::Yin */)
+TianYao::TianYao(WORD llmonth)
 {
-    Palace = static_cast<DiZhi>((static_cast<int>(YueZhi) - 11 + 12 - 1) % 12 + 1);
+    Palace = static_cast<DiZhi>((llmonth - 11 + 12 - 1) % 12 + 1);
     Name = "天姚";
 }
 
 // 天马星类构造函数
-TianMa::TianMa(DiZhi YueZhi /* = DiZhi::Yin */)
+TianMa::TianMa(WORD llmonth)
 {
-    switch (static_cast<int>(YueZhi) % 4)
+    switch (llmonth % 4)
     {
         {
         case 0:
@@ -392,18 +392,18 @@ TianMa::TianMa(DiZhi YueZhi /* = DiZhi::Yin */)
 }
 
 // 解神星类构造函数
-JieShen::JieShen(DiZhi YueZhi /* = DiZhi::Yin */)
+JieShen::JieShen(WORD llmonth)
 {
     DiZhi a[12] = {DiZhi::Shen, DiZhi::Shen, DiZhi::Xu, DiZhi::Xu, DiZhi::Zi, DiZhi::Zi, DiZhi::Yin, DiZhi::Yin, DiZhi::Chen, DiZhi::Chen, DiZhi::Wu, DiZhi::Wu};
 
-    Palace = a[static_cast<int>(YueZhi) - 1];
+    Palace = a[llmonth - 1];
     Name = "解神";
 }
 
 // 天巫星类构造函数
-TianWu::TianWu(DiZhi YueZhi /* = DiZhi::Yin */)
+TianWu::TianWu(WORD llmonth)
 {
-    switch (static_cast<int>(YueZhi) % 4)
+    switch (llmonth % 4)
     {
         {
         case 0:
@@ -426,21 +426,21 @@ TianWu::TianWu(DiZhi YueZhi /* = DiZhi::Yin */)
 }
 
 // 天月星类构造函数
-TianYue_2::TianYue_2(DiZhi YueZhi /* = DiZhi::Yin */)
+TianYue_2::TianYue_2(WORD llmonth)
 {
     DiZhi a[12] = {DiZhi::Xu, DiZhi::Si, DiZhi::Chen, DiZhi::Yin, DiZhi::Wei, DiZhi::Mao, DiZhi::Hai, DiZhi::Wei, DiZhi::Yin, DiZhi::Wu, DiZhi::Xu, DiZhi::Yin};
 
-    Palace = a[static_cast<int>(YueZhi) - 1];
+    Palace = a[llmonth - 1];
     Name = "天月";
 }
 
 // 阴煞星类构造函数
 
-YinSha::YinSha(DiZhi YueZhi /* = DiZhi::Yin */)
+YinSha::YinSha(WORD llmonth)
 {
     DiZhi a[12] = {DiZhi::Yin, DiZhi::Zi, DiZhi::Xu, DiZhi::Shen, DiZhi::Wu, DiZhi::Chen, DiZhi::Yin, DiZhi::Zi, DiZhi::Xu, DiZhi::Shen, DiZhi::Wu, DiZhi::Chen};
 
-    Palace = a[static_cast<int>(YueZhi) - 1];
+    Palace = a[llmonth - 1];
     Name = "阴煞";
 }
 
@@ -738,7 +738,8 @@ TianXi::TianXi(DiZhi NianZhi /* = DiZhi::Wu */)
 // 蜚蠊星类构造函数
 FeiLian_2::FeiLian_2(DiZhi NianZhi /* = DiZhi::Wu */)
 {
-    Palace = static_cast<DiZhi>((12 - static_cast<int>(NianZhi) + 24 - 1) % 12 + 1);
+    DiZhi a[12]={DiZhi::Shen,DiZhi::You,DiZhi::Xu,DiZhi::Si,DiZhi::Wu,DiZhi::Wei,DiZhi::Yin,DiZhi::Mao,DiZhi::Chen,DiZhi::Hai,DiZhi::Zi,DiZhi::Chou};
+    Palace = a[static_cast<int>(NianZhi) - 1];
     Name = "蜚蠊";
 }
 // 破碎星类构造函数
@@ -1301,15 +1302,15 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
     s35 = TaiFu(info._ShiZhi);
     s36 = FengGao(info._ShiZhi);
     // 根据本文件中构造函数，初始化剩余星
-    s37 = ZuoFu(info._YueZhi);
-    s38 = YouBi(info._YueZhi);
-    s39 = TianXing(info._YueZhi);
-    s40 = TianYao(info._YueZhi);
-    s41 = TianMa(info._YueZhi);
-    s42 = JieShen(info._YueZhi);
-    s43 = TianWu(info._YueZhi);
-    s44 = TianYue_2(info._YueZhi);
-    s45 = YinSha(info._YueZhi);
+    s37 = ZuoFu(info.LMonth);
+    s38 = YouBi(info.LMonth);
+    s39 = TianXing(info.LMonth);
+    s40 = TianYao(info.LMonth);
+    s41 = TianMa(info.LMonth);
+    s42 = JieShen(info.LMonth);
+    s43 = TianWu(info.LMonth);
+    s44 = TianYue_2(info.LMonth);
+    s45 = YinSha(info.LMonth);
 
     s46 = SanTai(s37.showPalace(), info.LDay);
     s47 = BaZuo(s38.showPalace(), info.LDay);
@@ -1382,6 +1383,9 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
 void Case::show()
 { // 使用循环，如果宫位信息等于对应宫信息，那么输出星的名字。
 
+    // std::cout << info.LYear << " "<<info.LMonth<< " "<< info.LDay<<"\n";
+    // std::cout << info._RYear <<" "<<info._RMonth<<" "<<info._RDay<<" "<< info._RHour<<" "<< info._RMinute<<"\n";
+    // std::cout <<static_cast<int>(info._YueZhi);
     std::cout << "命例排盘结果：\n";
     std::cout << "姓名:"<<_name<<"\n";
     std::cout << "子: ";
