@@ -174,7 +174,7 @@ void AllTypeView()
         short in = 1;
         cin >> in;
         // 检测数字是否大于范围
-        if (in > alltype.ShowAmount() + 1)
+        while (in > alltype.ShowAmount() + 1)
         {
             cout << "输入错误，请重新输入：";
             cin >> in;
@@ -322,6 +322,7 @@ void TypeImport()
     {
         std::cout << "打开文件失败！\n";
         system("pause");
+        return;
     }
     //逐行读取文件信息
     std::string line;
