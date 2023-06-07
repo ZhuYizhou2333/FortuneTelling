@@ -118,7 +118,7 @@ void FunctionChoose()
     while (!shouldExit)
     {
         system("cls");
-        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "请输入数字进行对应操作\n\n";
         cout << "\t0.退出程序\n";
         cout << "\t1.排盘模式\n\n";
         // cout << "\t2.占卜模式\n\n";
@@ -160,7 +160,7 @@ void AllTypeView()
     {
         TypesManage alltype(InitTypes()); // 从文件中构造。
         system("cls");
-        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "请输入数字进行对应操作\n\n";
         cout << "\t0.返回功能选择界面\n";
         cout << "\t1.编辑，导入与导出分类\n";
         // 这里是具体的命例分类。
@@ -204,7 +204,7 @@ void TypeEdit()
     {
         TypesManage alltype(InitTypes()); // 从文件中构造。
         system("cls");
-        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "请输入数字进行对应操作\n\n";
         cout << "\t0.返回分类查看页面\n";
         cout << "\t1.添加分类\n";
         cout << "\t2.删除分类\n";
@@ -241,8 +241,8 @@ void TypeAdd()
 {
     TypesManage alltype(InitTypes()); // 从文件中构造。
     system("cls");
-    cout << "用户：1234Aa\n\n";
-    cout << "\t请输入需要添加的分类名称（输入0代表取消新建）\n\n";
+    // cout << "用户：1234Aa\n\n";
+    cout << "请输入需要添加的分类名称（输入0代表取消新建）\n\n";
     cout << "请输入：";
     // 这里需要接受新建的分类名称。
     std::string Name;
@@ -265,7 +265,6 @@ void TypeDelete()
 {
     TypesManage alltype(InitTypes()); // 从文件中构造。
     system("cls");
-    cout << "用户：1234Aa\n";
     cout << "存在的分类：\n\n";
     // 这里需要遍历alltype，输出所有的分类名称。
     for (int i = 0; i < alltype.ShowAmount(); i++)
@@ -367,7 +366,7 @@ void ParticularTypeView(short typeNum)
     {
         TypesManage alltype(InitTypes()); // 从文件中构造。
         system("cls");
-        cout << "用户：1234Aa\n请输入数字进行对应操作\n\n";
+        cout << "请输入数字进行对应操作\n\n";
         cout << "\t0.返回功能选择界面\n";
         cout << "\t1.新建命例\n";
         cout << "\t2.删除命例" << std::endl;
