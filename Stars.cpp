@@ -1382,10 +1382,15 @@ Case::Case(unsigned long long BBirthTime /*= 199002231934 */, double LLongitude 
 // 排盘函数，可以展示命例的排盘结果
 void Case::show()
 { // 使用循环，如果宫位信息等于对应宫信息，那么输出星的名字。
-
-    // std::cout << info.LYear << " "<<info.LMonth<< " "<< info.LDay<<"\n";
-    // std::cout << info._RYear <<" "<<info._RMonth<<" "<<info._RDay<<" "<< info._RHour<<" "<< info._RMinute<<"\n";
+# if 1
+    std::cout <<"农历" <<info.LYear << "年 "<<info.LMonth<< "月 "<< info.LDay<<"日\n";
+    std::cout <<"经度"<<info._Longitude<<"\n";
+    std::cout << "钟表时："<< info._Year<<"年 "<<info._Month<<"月 "<< info._Day<< "日 "<<info._Hour <<"时 "<<info._Minute<<"分\n";
+    std::cout << "真太阳时："<<info._RYear <<"年 "<<info._RMonth<<"月 "<<info._RDay<<"日 "<< info._RHour<<"时 "<< info._RMinute<<"分\n";
     // std::cout <<static_cast<int>(info._YueZhi);
+
+# endif
+
     std::cout << "命例排盘结果：\n";
     std::cout << "姓名:"<<_name<<"\n";
     std::cout << "子: ";
